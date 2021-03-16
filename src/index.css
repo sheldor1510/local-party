@@ -1,0 +1,39 @@
+body {
+  max-width: 100%;
+  max-height: 100%;
+  font-family: "Inter";
+  background-color: black;
+  color: white;
+}
+
+#title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#video-player {
+  margin: auto;
+  text-align: center;
+  width: 1000px;
+  height: 500px;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+}
+
+#fileChooser {
+  margin: auto;
+  margin-top: 50px;
+  height: 30px;
+  width: 250px;
+  text-align: center;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  padding: 20px;
+}
+
+#filePathText {
+  text-align: center;
+}

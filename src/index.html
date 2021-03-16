@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Local Party</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inter-ui@3.15.1/inter.min.css">
+    <script defer src="render.js"></script>
+  </head>
+  <body>
+    <h1 id="title">Local Party</h1>
+    <div class="video-player-container">
+      <video
+        id="video-player"
+        class="video-js vjs-big-play-centered"
+        controls
+        preload="metadata"
+        data-setup='{}'
+      >
+        <source id="videoSrc" src="test.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div id="fileChooser">
+      Drag your video file over here.
+    </div><br>
+    <p id="filePathText"></p>
+    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+  </body>
+</html>
