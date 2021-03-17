@@ -1,4 +1,6 @@
 var videoPlayer = document.getElementById("video-player")
+const loader = document.getElementById("loader")
+loader.style.display = "none"
 let lastcurrentime = 0;
 
 videoPlayer.addEventListener('play', videoControlsHandler, false);
@@ -21,15 +23,20 @@ function videoControlsHandler(e) {
 
 const fileChooser = document.getElementById("fileChooser")
 
-fileChooser.addEventListener('drop', (e) => {
+fileChooser.addEventListener('drop', async (e) => {
     e.preventDefault();
     e.stopPropagation();
     const filePath = e.dataTransfer.files[0].path
+    fileChooser.style.display = "none"
+    loader.style.display = "block"
+    const fileSize = await e.dataTransfer.files[0].size
+    localStorage.setItem("videoSize", fileSize)
     document.getElementById("filePathText").innerHTML = "File Path: " + filePath
     // fileChooser.style.display = "none" // use this to hide the file chooser
     videoPlayer.setAttribute("src", filePath)
     videoPlayer.load()
-    video.play();
+    loader.style.display = "none"
+    fileChooser.style.display = "block"
 });
 
 fileChooser.addEventListener('dragover', (e) => {
