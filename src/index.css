@@ -1,12 +1,179 @@
 body {
-  max-width: 100%;
-  max-height: 100%;
-  font-family: "Inter";
-  background-color: black;
+  background-color: #111316;
+  color: white;
+  font-family: 'Lexend Deca' , sans-serif;
+}
+
+/* Landing Page Start */
+
+.landing{
+  display: none;
+}
+
+.main{
+  background-color: #111316;
+  height: 100vh;
+}
+
+.head{
+  margin-top: 16rem;
+  font-size: 3.5rem;
   color: white;
 }
 
-#title {
+.buttons{
+  border-radius: 50px;
+  background-color: white;
+  border: none;
+  color: #111316;
+  font-size: 1.3rem;
+  width: 15rem;
+  height: 3.5rem;
+}
+
+.settings{
+  width: 100%;
+  position: absolute;
+  bottom: 3rem;
+}
+
+.settings a:hover{
+  color: white;
+}
+
+.icon{
+  color: white;
+  font-size: 2.5rem;
+}
+
+/* Landing Page End */
+
+/* Profile Page Start */
+
+.profile{
+  display: none;
+}
+
+.pfp-col{
+  margin-top: 9rem;
+}
+
+.pfp{
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+}
+.pfp-outer-circle{
+  padding: 0.8rem;
+  margin: auto;
+  height: 11rem;
+  width: 11rem;
+  border-radius: 50%;
+  border: white 4px solid;
+}
+
+.pfp-head{
+  font-size: 3.5rem;
+  color: white;
+}
+
+input{
+  color: gray;
+  border-radius: 50px;
+  width: 20rem;
+  font-size: 1.1rem;
+  border: none;
+  padding: 10px 15px;
+}
+
+input:focus{
+  outline: none;
+}
+
+/* Profile Page End */
+
+/* Create Page Start */
+
+.create{
+  display: none;
+}
+
+.create-col{
+  margin-top: 14rem;
+}
+
+.dragDrop{
+  margin: auto;
+  text-align: left;
+  background-color: white;
+  color: gray;
+  border-radius: 50px;
+  width: 20rem;
+  height: 3rem;
+  font-size: 1.1rem;
+  border: none;
+  padding: 10px 15px;
+}
+
+/* Create Page End */
+
+/* Join Page Start */
+
+.join{
+  display: none;
+}
+
+.join-col{
+  margin-top: 16rem;
+}
+
+/* Join Page End */
+
+/* Room Page Start */
+
+.room{
+  display: block;
+}
+
+.left-side{
+  margin-left: -4rem;
+}
+
+.right-side{
+  margin-right: 1rem;
+}
+
+
+.leave-btn{
+  margin-top: 1rem;
+  background-color: #dc3545;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  width: 11rem;
+  height: 3rem;
+}
+
+.video{
+  width: 98%;
+  background-color: red;
+  height: 35rem;
+  border-radius: 30px;
+}
+
+.chat{
+  background-color: red;
+  width: 98%;
+  height: 35rem;
+  border-radius: 30px;
+}
+
+
+/* Room Page End */
+
+
+/* #title {
   text-align: center;
   font-size: 40px;
   font-weight: bold;
@@ -44,4 +211,4 @@ body {
   height: 60px;
   width: 60px;
   text-align: center;
-}
+} */

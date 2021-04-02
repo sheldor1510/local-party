@@ -3,13 +3,198 @@
   <head>
     <meta charset="UTF-8">
     <title>Local Party</title>
-    <link rel="stylesheet" href="index.css">
     <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inter-ui@3.15.1/inter.min.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/abc159cb0a.js" crossorigin="anonymous"></script>
     <script defer src="render.js"></script>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <h1 id="title">Local Party</h1>
+    <!-- Landing Page -->
+    <div class="landing">
+      <div class="container-fluid main">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h1 class="head">
+              Local Watch
+            </h1>
+          </div>
+          <div class="col-12 text-center mt-4">
+            <button class="buttons">
+              Create Room
+            </button>
+          </div>
+          <div class="col-12 mt-4 text-center">
+            <button class="buttons">
+              Join Room
+            </button>
+          </div>
+        </div>
+        <div class="row justify-content-end settings">
+          <div class="col-1">
+            <a href="#">
+              <i class="fas fa-cog icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div class="profile">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 text-center pfp-col">
+            <div class="pfp-outer-circle">
+              <img src="https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png" class="pfp" alt="profile pic">
+            </div>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <h1 class="pfp-head">
+              Profile
+            </h1>
+          </div>
+          <div class="col-12 text-center mt-4">
+            <form action="/" method="POST">
+              <div class="name">
+                <input 
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Username"
+                >
+              </div>
+              <div class="submit mt-5">
+                <a href="#">
+                  <button class="buttons" style="width: 10rem;" type="submit">
+                    Save   
+                  </button>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Page -->
+    <div class="create">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 text-center create-col">
+            <h1 class="pfp-head">
+              Create Room
+            </h1>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <form action="/" method="POST">
+              <div>
+                <input 
+                  type="number"
+                  name="participants"
+                  id="participants"
+                  placeholder="Max. no. of participants"
+                >
+              </div>
+              <div class="mt-3">
+                <div id="fileChooser" class="dragDrop">
+                  Drag your video file over here
+                </div><br>
+                <p id="filePathText"></p>
+              </div>
+              <div class="mt-4">
+                <a href="">
+                  <button class="buttons" style="width: 10rem;">
+                    Create
+                  </button>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Join Page -->
+    <div class="join">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 text-center join-col">
+            <h1 class="pfp-head">
+              Join Room
+            </h1>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <form action="/" method="POST">
+              <div>
+                <input 
+                  type="number"
+                  name="participants"
+                  id="participants"
+                  placeholder="Room Code"
+                >
+              </div>
+              <div class="mt-3">
+                <div id="fileChooser" class="dragDrop">
+                  Drag your video file over here
+                </div><br>
+                <p id="filePathText"></p>
+              </div>
+              <div class="mt-4">
+                <a href="/">
+                <button class="buttons" style="width: 10rem;">
+                  Join
+                </button></a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room Page -->
+    <div class="room">
+      <div class="container-fluid">
+        <div class="row mt-3 justify-content-center">
+          <div class="col-9 left-side">
+            <h2>
+              Local Room
+            </h2>
+            <h4>
+              Code- xxxx
+            </h4>
+          </div>
+          <div class="col-1 right-side">
+            <a href="/">
+            <button class="leave-btn">
+              Leave
+            </button>
+            </a>
+          </div>
+        </div>
+        <div class="row mt-4 justify-content-center">
+          <div class="col-8 text-center">
+            <div class="video">
+              V
+            </div>
+          </div>
+          <div class="col-3 text-center">
+            <div class="chat">
+              S
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Test Page -->
+    <!-- <h1 id="title">Local Party</h1>
     <div class="video-player-container">
       <video
         id="video-player"
@@ -21,11 +206,9 @@
         <source id="videoSrc" src="test.mp4" type="video/mp4" />
       </video>
     </div>
-    <img src="loading.gif" alt="loader" id="loader"/>
-    <div id="fileChooser">
-      Drag your video file over here.
-    </div><br>
-    <p id="filePathText"></p>
+    <img src="loading.gif" alt="loader" id="loader"/> -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
   </body>
 </html>
