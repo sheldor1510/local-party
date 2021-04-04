@@ -5,6 +5,11 @@ body {
   font-family: 'Lexend Deca' , sans-serif;
 }
 
+.back-btn{
+  font-size: 2rem;
+  color: white;
+}
+
 /* Landing Page Start */
 
 .landing{
