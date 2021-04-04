@@ -17,37 +17,35 @@
   </head>
   <body>
     <!-- Landing Page -->
-    <div class="landing">
+    <div class="landing" id="landing">
       <div class="container-fluid main">
         <div class="row">
           <div class="col-12 text-center">
             <h1 class="head">
-              Local Watch
+              Local Party
             </h1>
           </div>
           <div class="col-12 text-center mt-4">
-            <button class="buttons">
+            <button class="buttons" id="createRoomButton">
               Create Room
             </button>
           </div>
           <div class="col-12 mt-4 text-center">
-            <button class="buttons">
+            <button class="buttons" id="joinRoomButton">
               Join Room
             </button>
           </div>
         </div>
         <div class="row justify-content-end settings">
           <div class="col-1">
-            <a href="#">
-              <i class="fas fa-cog icon"></i>
-            </a>
+              <i class="fas fa-cog icon" id="profileButton"></i>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Profile Page -->
-    <div class="profile">
+    <div class="profile" id="profile">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 text-center pfp-col">
@@ -61,30 +59,28 @@
             </h1>
           </div>
           <div class="col-12 text-center mt-4">
-            <form action="/" method="POST">
+              <p id="profilePageText"></p>
               <div class="name">
                 <input 
                   type="text"
                   name="username"
                   id="username"
                   placeholder="Username"
+                  required
                 >
               </div>
               <div class="submit mt-5">
-                <a href="#">
-                  <button class="buttons" style="width: 10rem;" type="submit">
+                  <button class="buttons" style="width: 10rem;" id="profileSaveButton">
                     Save   
                   </button>
-                </a>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Create Page -->
-    <div class="create">
+    <div class="create" id="create">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 text-center create-col">
@@ -93,13 +89,13 @@
             </h1>
           </div>
           <div class="col-12 text-center mt-3">
-            <form action="/" method="POST">
+              <p id="createRoomText"></p>
               <div>
                 <input 
-                  type="number"
-                  name="participants"
-                  id="participants"
-                  placeholder="Max. no. of participants"
+                  type="text"
+                  name="roomname"
+                  id="roomname"
+                  placeholder="Room Name"
                 >
               </div>
               <div class="mt-3">
@@ -109,20 +105,17 @@
                 <p id="filePathText"></p>
               </div>
               <div class="mt-4">
-                <a href="">
-                  <button class="buttons" style="width: 10rem;">
+                  <button class="buttons" style="width: 10rem;" id="roomCreateButton">
                     Create
                   </button>
-                </a>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Join Page -->
-    <div class="join">
+    <div class="join" id="join">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 text-center join-col">
@@ -131,51 +124,47 @@
             </h1>
           </div>
           <div class="col-12 text-center mt-3">
-            <form action="/" method="POST">
+              <p id="joinRoomText"></p>
               <div>
                 <input 
-                  type="number"
-                  name="participants"
-                  id="participants"
+                  type="text"
+                  name="roomCode"
+                  id="roomCode"
                   placeholder="Room Code"
                 >
               </div>
               <div class="mt-3">
-                <div id="fileChooser" class="dragDrop">
+                <div id="joinRoomfileChooser" class="dragDrop">
                   Drag your video file over here
                 </div><br>
-                <p id="filePathText"></p>
+                <p id="joinRoomfilePathText"></p>
               </div>
               <div class="mt-4">
-                <a href="/">
-                <button class="buttons" style="width: 10rem;">
+                <button class="buttons" style="width: 10rem;" id="roomJoinButton">
                   Join
-                </button></a>
+                </button>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Room Page -->
-    <div class="room">
+    <div class="room" id="room">
       <div class="container-fluid">
         <div class="row mt-3 justify-content-center">
           <div class="col-9 left-side">
-            <h2>
+            <h2 id="roomNameText">
               Local Room
             </h2>
             <h4>
-              Code- xxxx
+              Code- <span id="roomCodeText">xxxx</span>
             </h4>
           </div>
           <div class="col-1 right-side">
-            <a href="/">
-            <button class="leave-btn">
+            <button class="leave-btn" id="roomLeaveButton">
               Leave
             </button>
-            </a>
           </div>
         </div>
         <div class="row mt-4 justify-content-center">
@@ -342,7 +331,6 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <form action="#" id="send-container">
                     <div class="row justify-content-center chattimg">
                       <div class="col-9">
                         <input 
@@ -358,7 +346,6 @@
                         </div>
                       </div>
                     </div>
-                  </form>
                 </div>
               </div>
             </div>

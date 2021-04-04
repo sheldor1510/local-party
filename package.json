@@ -5,6 +5,7 @@
   "description": "My Electron application description",
   "main": "src/index.js",
   "scripts": {
+    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",

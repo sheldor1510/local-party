@@ -46,6 +46,10 @@ body {
   font-size: 2.5rem;
 }
 
+.icon:hover {
+  cursor: pointer;
+}
+
 /* Landing Page End */
 
 /* Profile Page Start */
@@ -132,7 +136,7 @@ input:focus{
 /* Room Page Start */
 
 .room{
-  display: block;
+  display: none;
 }
 
 .left-side{
