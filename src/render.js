@@ -76,10 +76,11 @@ document.addEventListener("click", function (e) {
         document.getElementById("joinRoomText").innerHTML = ""
         document.getElementById("roomNameText").innerHTML = "wanda vision ep1" 
         document.getElementById("roomCodeText").innerHTML = inputRoomCode
-        videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
+        videoPlayer.setAttribute("src", "C:\Users\Administrator\Desktop\Giga-bite pro\JS\local-party\src\test.mp4")
         joinPage.style.display = "none"
         roomPage.style.display = "block"
     }
+    // localStorage.getItem("joinVideoPath")
     if(e.target.id == "roomLeaveButton") {
         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
         roomPage.style.display = "none"

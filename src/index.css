@@ -1,6 +1,7 @@
 body {
   background-color: #111316;
   color: white;
+  overflow-y: hidden;
   font-family: 'Lexend Deca' , sans-serif;
 }
 
@@ -171,19 +172,20 @@ input:focus{
   background: none;
 }
 
-#loader {
+/* #loader {
   margin: auto;
   margin-top: 30px;
   height: 60px;
   width: 60px;
   text-align: center;
-}
+} */
 
 .chat{
   background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.25), rgba(255,255,255,0.05));
   border: rgba(255, 255, 255, 0.30) 2px solid;
   width: 98%;
-  height: 40rem;
+  height: 83%;
+  position: relative;
   border-radius: 30px;
 }
 
@@ -194,8 +196,13 @@ input:focus{
 }
 
 .messages{
-  height: 35rem;
+  height: 86%;
   overflow-y: scroll;
+}
+
+.chattimg{
+  position: absolute;
+  bottom: 10px;
 }
 
 .message{
@@ -223,10 +230,6 @@ input:focus{
   border-radius: 50px;
 }
 
-.chattimg{
-  position: fixed;
-  bottom: 2.1rem;  
-}
 
 .send-box{
   width: 3rem;
@@ -257,37 +260,3 @@ input:focus{
 }
 
 /* Room Page End */
-
-
-/* #title {
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-#video-player {
-  margin: auto;
-  text-align: center;
-  
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
-}
-
-#fileChooser {
-  margin: auto;
-  margin-top: 50px;
-  height: 30px;
-  width: 250px;
-  text-align: center;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
-  padding: 20px;
-}
-
-#filePathText {
-  text-align: center;
-}
-
- */
