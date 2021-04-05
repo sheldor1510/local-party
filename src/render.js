@@ -14,6 +14,27 @@ const profilePage = document.getElementById("profile")
 const createPage = document.getElementById("create")
 const joinPage = document.getElementById("join")
 const roomPage = document.getElementById("room")
+const socket = io()
+
+const append = message => {
+    document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mb-4"><div class="row justify-content-center"><div class="col-1 text-center"><div class="pfp-small"><img src="https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png" alt="pfp" class="pfp-small"></div></div><div class="col-10 message"><span>${message.name}</span><br>${message.content}</div></div></div>`
+}
+
+socket.emit('new-user-joined', localStorage.getItem("username"));
+
+socket.on('user-joined', name =>{
+    append({
+        name: name,
+        content: `${name} just popped into the chat.`
+    })
+})
+
+socket.on('receive', data=>{
+    append({
+        name: data.name,
+        content: data.message
+    })
+})
 
 landingPage.style.display = "block"
 
@@ -51,7 +72,6 @@ document.addEventListener("click", function (e) {
             } else {
                 localStorage.setItem("roomName", roomName)
                 const roomCode = randomString(4, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                localStorage.setItem("roomCode", roomCode)
                 document.getElementById("createRoomText").innerHTML = ""
                 document.getElementById("roomNameText").innerHTML = roomName
                 document.getElementById("roomCodeText").innerHTML = roomCode
@@ -76,6 +96,7 @@ document.addEventListener("click", function (e) {
                 .then( async (result) => {
                     const resp = await result.json()
                     if(resp.message == "success") {
+                        localStorage.setItem("roomCode", roomCode)
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
                     }
@@ -121,6 +142,7 @@ document.addEventListener("click", function (e) {
                         document.getElementById("joinRoomText").innerHTML = ""
                         document.getElementById("roomNameText").innerHTML = resp.roomName 
                         document.getElementById("roomCodeText").innerHTML = resp.roomCode
+                        localStorage.setItem("roomCode", inputRoomCode)
                         videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
@@ -138,6 +160,15 @@ document.addEventListener("click", function (e) {
     }
     if(e.target.id == "backButton") {
         location.reload()
+    }
+    if(e.target.id == "sendButton") {
+        const messageInput = document.getElementById("messageInp").value
+        socket.emit('send', messageInput)
+        append({
+            name: localStorage.getItem("username"),
+            content: messageInput
+        })
+        document.getElementById("messageInp").value = ""
     }
 })
 
