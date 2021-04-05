@@ -56,9 +56,31 @@ document.addEventListener("click", function (e) {
                 document.getElementById("roomNameText").innerHTML = roomName
                 document.getElementById("roomCodeText").innerHTML = roomCode
                 videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
-                createPage.style.display = "none"
-                roomPage.style.display = "block"
-                // make api request to create room in DB
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                    "roomName": roomName,
+                    "roomCode": roomCode,
+                    "videoSize": localStorage.getItem("videoSize")
+                });
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+
+                fetch("https://local-party.herokuapp.com/room/create", requestOptions)
+                .then( async (result) => {
+                    const resp = await result.json()
+                    if(resp.message == "success") {
+                        createPage.style.display = "none"
+                        roomPage.style.display = "block"
+                    }
+                })
+                .catch(error => console.log('error', error));
             }
         }
     }
@@ -75,13 +97,36 @@ document.addEventListener("click", function (e) {
             if(localStorage.getItem("joinVideoPath") == null || localStorage.getItem("videoSize") == null) {
                 document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
             } else {
-                // check roomCode and videoSize using API and get room name and other stuff
-                document.getElementById("joinRoomText").innerHTML = ""
-                document.getElementById("roomNameText").innerHTML = "wanda vision ep1" 
-                document.getElementById("roomCodeText").innerHTML = inputRoomCode
-                videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
-                joinPage.style.display = "none"
-                roomPage.style.display = "block"
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                    "roomCode": inputRoomCode,
+                    "videoSize": localStorage.getItem("videoSize")
+                });
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+
+                fetch("https://local-party.herokuapp.com/room/join", requestOptions)
+                .then( async (result) => {
+                    const resp = await result.json()
+                    if(resp.message != "success") {
+                        document.getElementById("joinRoomText").innerHTML = resp.message
+                    } else {
+                        document.getElementById("joinRoomText").innerHTML = ""
+                        document.getElementById("roomNameText").innerHTML = resp.roomName 
+                        document.getElementById("roomCodeText").innerHTML = resp.roomCode
+                        videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
+                        joinPage.style.display = "none"
+                        roomPage.style.display = "block"
+                    }   
+                })
+                .catch(error => console.log('error', error));
             }
         }
     }
