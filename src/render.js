@@ -14,7 +14,7 @@ const profilePage = document.getElementById("profile")
 const createPage = document.getElementById("create")
 const joinPage = document.getElementById("join")
 const roomPage = document.getElementById("room")
-const socket = io()
+const socket = io.connect("https://local-party.herokuapp.com")
 
 const append = message => {
     document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mb-4"><div class="row justify-content-center"><div class="col-1 text-center"><div class="pfp-small"><img src="https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png" alt="pfp" class="pfp-small"></div></div><div class="col-10 message"><span>${message.name}</span><br>${message.content}</div></div></div>`
@@ -34,8 +34,12 @@ socket.on('receive', data=>{
         name: data.name,
         content: data.message
     })
+    document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
 })
 
+if(localStorage.getItem("username") == undefined) {
+    localStorage.setItem("username", "undefinedUsername")
+}
 landingPage.style.display = "block"
 
 document.addEventListener("click", function (e) {
@@ -97,6 +101,12 @@ document.addEventListener("click", function (e) {
                     const resp = await result.json()
                     if(resp.message == "success") {
                         localStorage.setItem("roomCode", roomCode)
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting."})
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party"})
+                        append({name: "Local Party", content: `Welcome to ${roomName}`})
+                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party."})
+                        append({name: "Local Party", content: "You can change your username in the settings page."})
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
                     }
@@ -144,6 +154,12 @@ document.addEventListener("click", function (e) {
                         document.getElementById("roomCodeText").innerHTML = resp.roomCode
                         localStorage.setItem("roomCode", inputRoomCode)
                         videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting."})
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party"})
+                        append({name: "Local Party", content: `Welcome to ${resp.roomName}!`})
+                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party."})
+                        append({name: "Local Party", content: "You can change your username in the settings page."})
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
@@ -170,6 +186,20 @@ document.addEventListener("click", function (e) {
         })
         document.getElementById("messageInp").value = ""
     }
+})
+
+const form = document.getElementById("send-form")
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const messageInput = document.getElementById("messageInp").value
+    socket.emit('send', messageInput)
+    append({
+        name: localStorage.getItem("username"),
+        content: messageInput
+    })
+    document.getElementById("messageInp").value = ""
+    document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
 })
 
 videoPlayer.addEventListener('play', videoControlsHandler, false);
