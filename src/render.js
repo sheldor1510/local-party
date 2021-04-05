@@ -42,22 +42,25 @@ document.addEventListener("click", function (e) {
     }
     if(e.target.id == "roomCreateButton") {
         const roomName = document.getElementById("roomname").value
-        if(roomName == "") {
+        if(roomName.length == 0) {
+            console.log("error")
             document.getElementById("createRoomText").innerHTML = "Please fill in all the fields"
+        } else {
+            if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null) {
+                document.getElementById("createRoomText").innerHTML = "Please fill in all the fields"
+            } else {
+                localStorage.setItem("roomName", roomName)
+                const roomCode = randomString(4, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+                localStorage.setItem("roomCode", roomCode)
+                document.getElementById("createRoomText").innerHTML = ""
+                document.getElementById("roomNameText").innerHTML = roomName
+                document.getElementById("roomCodeText").innerHTML = roomCode
+                videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
+                createPage.style.display = "none"
+                roomPage.style.display = "block"
+                // make api request to create room in DB
+            }
         }
-        if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null) {
-            document.getElementById("createRoomText").innerHTML = "Please fill in all the fields"
-        } 
-        localStorage.setItem("roomName", roomName)
-        const roomCode = randomString(4, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        localStorage.setItem("roomCode", roomCode)
-        document.getElementById("createRoomText").innerHTML = ""
-        document.getElementById("roomNameText").innerHTML = roomName
-        document.getElementById("roomCodeText").innerHTML = roomCode
-        videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
-        createPage.style.display = "none"
-        roomPage.style.display = "block"
-        // make api request to create room in DB
     }
     if(e.target.id == "joinRoomButton") {
         landingPage.style.display = "none"
@@ -66,25 +69,30 @@ document.addEventListener("click", function (e) {
     if(e.target.id == "roomJoinButton") {
         const inputRoomCode = document.getElementById("roomCode").value
         const videoSize = localStorage.getItem("videoSize")
-        if(roomCode == "") {
+        if(inputRoomCode.length == 0) {
             document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
+        } else {
+            if(localStorage.getItem("joinVideoPath") == null || localStorage.getItem("videoSize") == null) {
+                document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
+            } else {
+                // check roomCode and videoSize using API and get room name and other stuff
+                document.getElementById("joinRoomText").innerHTML = ""
+                document.getElementById("roomNameText").innerHTML = "wanda vision ep1" 
+                document.getElementById("roomCodeText").innerHTML = inputRoomCode
+                videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
+                joinPage.style.display = "none"
+                roomPage.style.display = "block"
+            }
         }
-        if(localStorage.getItem("joinVideoPath") == null || localStorage.getItem("videoSize") == null) {
-            document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
-        } 
-        // check roomCode and videoSize using API and get room name and other stuff
-        document.getElementById("joinRoomText").innerHTML = ""
-        document.getElementById("roomNameText").innerHTML = "wanda vision ep1" 
-        document.getElementById("roomCodeText").innerHTML = inputRoomCode
-        videoPlayer.setAttribute("src", "C:\Users\Administrator\Desktop\Giga-bite pro\JS\local-party\src\test.mp4")
-        joinPage.style.display = "none"
-        roomPage.style.display = "block"
     }
     // localStorage.getItem("joinVideoPath")
     if(e.target.id == "roomLeaveButton") {
         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
         roomPage.style.display = "none"
         landingPage.style.display = "block"
+    }
+    if(e.target.id == "backButton") {
+        location.reload()
     }
 })
 

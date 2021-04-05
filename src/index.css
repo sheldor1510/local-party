@@ -10,6 +10,10 @@ body {
   color: white;
 }
 
+.back-btn:hover {
+  cursor: pointer;
+}
+
 /* Landing Page Start */
 
 .landing{
