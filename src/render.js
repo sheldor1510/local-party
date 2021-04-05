@@ -20,8 +20,6 @@ const append = message => {
     document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mb-4"><div class="row justify-content-center"><div class="col-1 text-center"><div class="pfp-small"><img src="https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png" alt="pfp" class="pfp-small"></div></div><div class="col-10 message"><span>${message.name}</span><br>${message.content}</div></div></div>`
 }
 
-socket.emit('new-user-joined', localStorage.getItem("username"));
-
 socket.on('user-joined', name =>{
     append({
         name: name,
@@ -170,6 +168,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`})
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party."})
                         append({name: "Local Party", content: "You can change your username in the settings page."})
+                        socket.emit('new-user-joined', localStorage.getItem("username"));
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
@@ -181,8 +180,7 @@ document.addEventListener("click", function (e) {
     // localStorage.getItem("joinVideoPath")
     if(e.target.id == "roomLeaveButton") {
         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
-        roomPage.style.display = "none"
-        landingPage.style.display = "block"
+        location.reload()
     }
     if(e.target.id == "backButton") {
         location.reload()
