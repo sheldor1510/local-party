@@ -25,8 +25,9 @@ socket.emit('new-user-joined', localStorage.getItem("username"));
 socket.on('user-joined', name =>{
     append({
         name: name,
-        content: `${name} just popped into the chat.`
+        content: `${name} just popped into the party.`
     })
+    document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
 })
 
 socket.on('receive', data=>{
@@ -37,9 +38,18 @@ socket.on('receive', data=>{
     document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
 })
 
+socket.on('left', data =>{
+    append({
+        name: data.name,
+        content: `${data.name} left the party.`
+    })
+    document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
+})
+
 if(localStorage.getItem("username") == undefined) {
-    localStorage.setItem("username", "undefinedUsername")
+    localStorage.setItem("username", "unknown")
 }
+
 landingPage.style.display = "block"
 
 document.addEventListener("click", function (e) {
