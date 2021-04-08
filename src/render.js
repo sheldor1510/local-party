@@ -25,7 +25,7 @@ socket.on('user-joined', data => {
         append({
             name: data.name,
             content: `${data.name} just popped into the party.`,
-            pfp: localStorage.getItem("pfpUrl")
+            pfp: data.pfp
         })
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
@@ -36,7 +36,7 @@ socket.on('receive', data => {
         append({
             name: data.name,
             content: data.message,
-            pfp: localStorage.getItem("pfpUrl")
+            pfp: data.pfp
         })
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
@@ -136,7 +136,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode });
+                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") });
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
                     }
@@ -190,7 +190,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: inputRoomCode });
+                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") });
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
