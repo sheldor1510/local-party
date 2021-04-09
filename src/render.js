@@ -274,9 +274,9 @@ function videoControlsHandler(e) {
             const minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
             const seconds = Math.round(videoPlayer.currentTime) % 60 
             append({
-                name: localStorage.getItem("username"), 
+                name: "Local Party", 
                 content: `You played the video from ${minutes}:${seconds}`,
-                pfp: localStorage.getItem("pfpUrl")
+                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         } 
@@ -289,9 +289,9 @@ function videoControlsHandler(e) {
             const minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
             const seconds = Math.round(videoPlayer.currentTime) % 60 
             append({
-                name: localStorage.getItem("username"), 
+                name: "Local Party", 
                 content: `You paused the video at ${minutes}:${seconds}`,
-                pfp: localStorage.getItem("pfpUrl")
+                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
