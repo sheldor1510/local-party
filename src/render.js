@@ -57,18 +57,32 @@ socket.on('playerControlUpdate', data => {
     if(data.roomCode == localStorage.getItem("roomCode")) {
         if(data.message == "play") {
             console.log(data)
+            videoPlayer.currentTime = data.context
             videoPlayer.play()
-            console.log("played the video")
+            append({
+                name: "Local Party", 
+                content: `played the video from ${data.context}`,
+                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+            })
         }
         if(data.message == "pause") {
             console.log(data)
+            videoPlayer.currentTime = data.context
             videoPlayer.pause()
-            console.log("paused the video")
+            append({
+                name: "Local Party", 
+                content: `paused the video at ${data.context}`,
+                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+            })
         }
         if(data.message == "timeUpdated") {
             console.log(data)
             videoPlayer.currentTime = data.context
-            console.log("updated the time")
+            append({
+                name: "Local Party", 
+                content: `updated the timestamp at ${data.context}`,
+                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+            })
         }
     }
 })
