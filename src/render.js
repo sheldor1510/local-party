@@ -57,13 +57,11 @@ socket.on('playerControlUpdate', data => {
     if(data.roomCode == localStorage.getItem("roomCode")) {
         if(data.message == "play") {
             console.log(data)
-            videoPlayer.currentTime = data.context
             videoPlayer.play()
             console.log("played the video")
         }
         if(data.message == "pause") {
             console.log(data)
-            videoPlayer.currentTime = data.context
             videoPlayer.pause()
             console.log("paused the video")
         }
@@ -253,9 +251,9 @@ videoPlayer.addEventListener('d', videoControlsHandler, false);
 
 function videoControlsHandler(e) {
     if (e.type == 'play') {
-        socket.emit("playerControl", {message: "play", context: ""}) 
+        socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
     } else if (e.type == 'pause') {
-        socket.emit("playerControl", {message: "pause", context: ""})
+        socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
     } else if (e.type == 'timeupdate') {
         var timeDifference = lastcurrentime - videoPlayer.currentTime
         if(timeDifference < -1 || timeDifference > 1) {
