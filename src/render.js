@@ -47,7 +47,7 @@ socket.on('left', data => {
         append({
             name: data.name,
             content: `${data.name} left the party.`,
-            pfp: localStorage.getItem("pfpUrl")
+            pfp: data.pfp,
         })
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
@@ -202,6 +202,7 @@ document.addEventListener("click", function (e) {
     // localStorage.getItem("joinVideoPath")
     if(e.target.id == "roomLeaveButton") {
         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
+        socket.emit('disconnected')
         location.reload()
     }
     if(e.target.id == "backButton") {
