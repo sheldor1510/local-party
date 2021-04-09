@@ -31,6 +31,12 @@ socket.on('user-joined', data => {
     }
 })
 
+socket.on('members', data => {
+    if(data.roomCode == localStorage.getItem("roomCode")){
+        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
+    }
+})
+
 socket.on('receive', data => {
     if(data.roomCode == localStorage.getItem("roomCode")) {
         append({
@@ -240,7 +246,6 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") });
-                        document.getElementById("messageInp").autofocus = true;
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
@@ -265,7 +270,7 @@ const form = document.getElementById("send-form")
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const messageInput = document.getElementById("messageInp").value
-    if(messageInput != "") {
+    if(messageInput.replace(' ', '').length() == 0) {
         socket.emit('send', messageInput)
         append({
             name: localStorage.getItem("username"),

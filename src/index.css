@@ -193,7 +193,7 @@ input:focus{
   background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.25), rgba(255,255,255,0.05));
   border: rgba(255, 255, 255, 0.30) 2px solid;
   width: 98%;
-  height: 85%;
+  height: 90%;
   position: relative;
   border-radius: 30px;
 }
@@ -205,7 +205,7 @@ input:focus{
 }
 
 .messages{
-  height: 30rem;
+  height: 31rem;
   overflow-y: scroll;
 }
 
