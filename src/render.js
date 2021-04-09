@@ -279,9 +279,9 @@ form.addEventListener('submit', (e) => {
             content: messageInput,
             pfp: localStorage.getItem("pfpUrl")
         })
-        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
         document.getElementById("messageInp").value = ""
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
+        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
     }
 })
 
