@@ -27,11 +27,12 @@ socket.on('user-joined', data => {
             content: `${data.name} just popped into the party.`,
             pfp: data.pfp
         })
+        socket.emit('increaseMembers', {roomCode = data.roomCode, members: data.members})
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
 
-socket.on('members', data => {
+socket.on('updateMembers', data => {
     if(data.roomCode == localStorage.getItem("roomCode")){
         document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
     }
