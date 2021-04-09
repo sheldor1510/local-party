@@ -58,6 +58,7 @@ socket.on('playerControlUpdate', data => {
         if(data.message == "play") {
             console.log(data)
             videoPlayer.currentTime = data.context
+            allowEmit = false;
             videoPlayer.play()
             append({
                 name: "Local Party", 
@@ -69,6 +70,7 @@ socket.on('playerControlUpdate', data => {
         if(data.message == "pause") {
             console.log(data)
             videoPlayer.currentTime = data.context
+            allowEmit = false;
             videoPlayer.pause()
             append({
                 name: "Local Party", 
@@ -262,15 +264,27 @@ form.addEventListener('submit', (e) => {
     document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
 })
 
+let allowEmit = true;
+
 videoPlayer.addEventListener('play', videoControlsHandler, false);
 videoPlayer.addEventListener('pause', videoControlsHandler, false);
 videoPlayer.addEventListener('d', videoControlsHandler, false);
 
 function videoControlsHandler(e) {
     if (e.type == 'play') {
-        socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
+        if(allowEmit == true){
+            socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
+        } 
+        setTimeout(() => {
+            allowEmit = true
+        }, 500);
     } else if (e.type == 'pause') {
-        socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
+        if(allowEmit == true){
+            socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
+        }
+        setTimeout(() => {
+            allowEmit = true
+        }, 500);
     }
 }
 
