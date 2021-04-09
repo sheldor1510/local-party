@@ -27,7 +27,7 @@ socket.on('user-joined', data => {
             content: `${data.name} just popped into the party.`,
             pfp: data.pfp
         })
-        socket.emit('increaseMembers', {roomCode = data.roomCode, members: data.members})
+        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
