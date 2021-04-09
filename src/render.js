@@ -60,9 +60,11 @@ socket.on('playerControlUpdate', data => {
             videoPlayer.currentTime = data.context
             allowEmit = false;
             videoPlayer.play()
+            const minutes = Math.floor(Math.round(data.context)/60) 
+            const seconds = Math.round(data.context) % 60 
             append({
                 name: "Local Party", 
-                content: `played the video from ${data.context}`,
+                content: `${data.username} played the video from ${minutes}:${seconds}`,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
@@ -72,19 +74,11 @@ socket.on('playerControlUpdate', data => {
             videoPlayer.currentTime = data.context
             allowEmit = false;
             videoPlayer.pause()
+            const minutes = Math.floor(Math.round(data.context)/60) 
+            const seconds = Math.round(data.context) % 60 
             append({
                 name: "Local Party", 
-                content: `paused the video at ${data.context}`,
-                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
-            })
-            document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
-        }
-        if(data.message == "timeUpdated") {
-            console.log(data)
-            videoPlayer.currentTime = data.context
-            append({
-                name: "Local Party", 
-                content: `updated the timestamp at ${data.context}`,
+                content: `${data.username} paused the video at ${minutes}:${seconds}`,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
@@ -230,6 +224,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") });
+                        document.getElementById("messageInp").focus() 
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
@@ -254,14 +249,16 @@ const form = document.getElementById("send-form")
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const messageInput = document.getElementById("messageInp").value
-    socket.emit('send', messageInput)
-    append({
-        name: localStorage.getItem("username"),
-        content: messageInput,
-        pfp: localStorage.getItem("pfpUrl")
-    })
-    document.getElementById("messageInp").value = ""
-    document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
+    if(messageInput != "") {
+        socket.emit('send', messageInput)
+        append({
+            name: localStorage.getItem("username"),
+            content: messageInput,
+            pfp: localStorage.getItem("pfpUrl")
+        })
+        document.getElementById("messageInp").value = ""
+        document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
+    }
 })
 
 let allowEmit = true;
@@ -274,11 +271,14 @@ function videoControlsHandler(e) {
     if (e.type == 'play') {
         if(allowEmit == true){
             socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
+            const minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
+            const seconds = Math.round(videoPlayer.currentTime) % 60 
             append({
                 name: localStorage.getItem("username"), 
-                content: `played the video from ${videoPlayer.currentTime}`,
+                content: `You played the video from ${minutes}:${seconds}`,
                 pfp: localStorage.getItem("pfpUrl")
             })
+            document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         } 
         setTimeout(() => {
             allowEmit = true
@@ -286,11 +286,14 @@ function videoControlsHandler(e) {
     } else if (e.type == 'pause') {
         if(allowEmit == true){
             socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
+            const minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
+            const seconds = Math.round(videoPlayer.currentTime) % 60 
             append({
                 name: localStorage.getItem("username"), 
-                content: `paused the video at ${videoPlayer.currentTime}`,
+                content: `You paused the video at ${minutes}:${seconds}`,
                 pfp: localStorage.getItem("pfpUrl")
             })
+            document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
         setTimeout(() => {
             allowEmit = true
