@@ -57,17 +57,20 @@ socket.on('playerControlUpdate', data => {
     if(data.roomCode == localStorage.getItem("roomCode")) {
         if(data.message == "play") {
             console.log(data)
+            videoPlayer.currentTime = data.context
             videoPlayer.play()
             console.log("played the video")
         }
         if(data.message == "pause") {
             console.log(data)
+            videoPlayer.currentTime = data.context
             videoPlayer.pause()
             console.log("paused the video")
         }
         if(data.message == "timeUpdated") {
             console.log(data)
             videoPlayer.currentTime = data.context
+            videoPlayer.pause()
             console.log("updated the time")
         }
     }
