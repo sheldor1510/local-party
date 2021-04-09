@@ -271,12 +271,6 @@ function videoControlsHandler(e) {
         socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
     } else if (e.type == 'pause') {
         socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
-    } else if (e.type == 'timeupdate') {
-        var timeDifference = lastcurrentime - videoPlayer.currentTime
-        if(timeDifference < -1 || timeDifference > 1) {
-            socket.emit("playerControl", {message: "timeUpdated", context: videoPlayer.currentTime}) 
-        }
-        lastcurrentime = videoPlayer.currentTime
     }
 }
 
