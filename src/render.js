@@ -274,6 +274,11 @@ function videoControlsHandler(e) {
     if (e.type == 'play') {
         if(allowEmit == true){
             socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
+            append({
+                name: localStorage.getItem("username"), 
+                content: `played the video from ${videoPlayer.currentTime}`,
+                pfp: localStorage.getItem("pfpUrl")
+            })
         } 
         setTimeout(() => {
             allowEmit = true
@@ -281,6 +286,11 @@ function videoControlsHandler(e) {
     } else if (e.type == 'pause') {
         if(allowEmit == true){
             socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
+            append({
+                name: localStorage.getItem("username"), 
+                content: `paused the video at ${videoPlayer.currentTime}`,
+                pfp: localStorage.getItem("pfpUrl")
+            })
         }
         setTimeout(() => {
             allowEmit = true
