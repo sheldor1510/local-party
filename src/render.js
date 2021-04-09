@@ -56,6 +56,7 @@ socket.on('left', data => {
             content: `${data.name} left the party.`,
             pfp: data.pfp,
         })
+        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
@@ -278,6 +279,7 @@ form.addEventListener('submit', (e) => {
             content: messageInput,
             pfp: localStorage.getItem("pfpUrl")
         })
+        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
         document.getElementById("messageInp").value = ""
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
