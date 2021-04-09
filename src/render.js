@@ -60,13 +60,19 @@ socket.on('playerControlUpdate', data => {
             videoPlayer.currentTime = data.context
             allowEmit = false;
             videoPlayer.play()
-            let minutes = Math.floor(Math.round(data.context)/60)
+            let hours = parseInt(Math.round(data.context) / 60 /60, 10);
+            let minutes = parseInt((data.context / 60) % 60, 10);
             let seconds = Math.round(data.context) % 60
-            minutes < 10 ? '0'+ minutes.toString : minutes.toString
-            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
+            hours = hours < 10 ? "0" + hours.toString() : hours.toString();
+            minutes = minutes < 10 ? '0'+ minutes.toString() : minutes.toString()
+            seconds = seconds < 10 ? '0'+ seconds.toString() : seconds.toString()
+            let contentString = `${data.username} played the video from ${minutes}:${seconds}`
+            if(hours != 0){
+                contentString = `${data.username} played the video from ${hours}:${minutes}:${seconds}` 
+            }
             append({
                 name: "Local Party", 
-                content: `${data.username} played the video from ${minutes}:${seconds}`,
+                content: contentString,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
@@ -76,13 +82,19 @@ socket.on('playerControlUpdate', data => {
             videoPlayer.currentTime = data.context
             allowEmit = false;
             videoPlayer.pause()
-            let minutes = Math.floor(Math.round(data.context)/60) 
-            let seconds = Math.round(data.context) % 60 
-            minutes < 10 ? '0'+ minutes.toString : minutes.toString
-            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
+            let hours = parseInt(Math.round(data.context) / 60 /60, 10);
+            let minutes = parseInt((data.context / 60) % 60, 10);
+            let seconds = Math.round(data.context) % 60
+            hours = hours < 10 ? "0" + hours.toString() : hours.toString();
+            minutes = minutes < 10 ? '0'+ minutes.toString() : minutes.toString()
+            seconds = seconds < 10 ? '0'+ seconds.toString() : seconds.toString()
+            let contentString = `${data.username} paused the video at ${minutes}:${seconds}`
+            if(hours != 0){
+                contentString = `${data.username} paused the video at ${hours}:${minutes}:${seconds}` 
+            }
             append({
                 name: "Local Party", 
-                content: `${data.username} paused the video at ${minutes}:${seconds}`,
+                content: contentString,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
@@ -228,7 +240,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") });
-                        document.getElementById("messageInp").focus() 
+                        document.getElementById("messageInp").autofocus = true;
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
@@ -275,13 +287,19 @@ function videoControlsHandler(e) {
     if (e.type == 'play') {
         if(allowEmit == true){
             socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
-            let minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
+            let hours = parseInt(Math.round(videoPlayer.currentTime) / 60 /60, 10);
+            let minutes = parseInt((videoPlayer.currentTime / 60) % 60, 10);
             let seconds = Math.round(videoPlayer.currentTime) % 60
-            minutes < 10 ? '0'+ minutes.toString : minutes.toString
-            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
+            hours = hours < 10 ? "0" + hours.toString() : hours.toString();
+            minutes = minutes < 10 ? '0'+ minutes.toString() : minutes.toString()
+            seconds = seconds < 10 ? '0'+ seconds.toString() : seconds.toString()
+            let contentString = `You played the video from ${minutes}:${seconds}`
+            if(hours != 0){
+                contentString = `You played the video from ${hours}:${minutes}:${seconds}` 
+            }
             append({
                 name: "Local Party", 
-                content: `You played the video from ${minutes}:${seconds}`,
+                content: contentString,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
@@ -292,13 +310,19 @@ function videoControlsHandler(e) {
     } else if (e.type == 'pause') {
         if(allowEmit == true){
             socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
-            let minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
+            let hours = parseInt(Math.round(videoPlayer.currentTime) / 60 /60, 10);
+            let minutes = parseInt((videoPlayer.currentTime / 60) % 60, 10);
             let seconds = Math.round(videoPlayer.currentTime) % 60
-            minutes < 10 ? '0'+ minutes.toString : minutes.toString
-            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
+            hours = hours < 10 ? "0" + hours.toString() : hours.toString();
+            minutes = minutes < 10 ? '0'+ minutes.toString() : minutes.toString()
+            seconds = seconds < 10 ? '0'+ seconds.toString() : seconds.toString()
+            let contentString = `You paused the video at ${minutes}:${seconds}`
+            if(hours != 0){
+                contentString = `You paused the video at ${hours}:${minutes}:${seconds}` 
+            }
             append({
                 name: "Local Party", 
-                content: `You paused the video at ${minutes}:${seconds}`,
+                content: contentString,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
