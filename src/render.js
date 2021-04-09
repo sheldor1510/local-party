@@ -64,6 +64,7 @@ socket.on('playerControlUpdate', data => {
                 content: `played the video from ${data.context}`,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
+            document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
         if(data.message == "pause") {
             console.log(data)
@@ -74,6 +75,7 @@ socket.on('playerControlUpdate', data => {
                 content: `paused the video at ${data.context}`,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
+            document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
         if(data.message == "timeUpdated") {
             console.log(data)
@@ -83,6 +85,7 @@ socket.on('playerControlUpdate', data => {
                 content: `updated the timestamp at ${data.context}`,
                 pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
             })
+            document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
     }
 })
