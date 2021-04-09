@@ -270,7 +270,7 @@ const form = document.getElementById("send-form")
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const messageInput = document.getElementById("messageInp").value
-    if(messageInput.replace(' ', '').length() == 0) {
+    if(messageInput.split(" ").join("").length != 0) {
         socket.emit('send', messageInput)
         append({
             name: localStorage.getItem("username"),
