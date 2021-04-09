@@ -53,6 +53,23 @@ socket.on('left', data => {
     }
 })
 
+socket.on('playerControlUpdate', data => {
+    if(data.roomCode == localStorage.getItem("roomCode")) {
+        if(data.message == "play") {
+            videoPlayer.play()
+            console.log("played the video")
+        }
+        if(data.message == "pause") {
+            videoPlayer.pause()
+            console.log("paused the video")
+        }
+        if(data.message == "timeUpdated") {
+            videoPlayer.currentTime = data.context
+            console.log("updated the time")
+        }
+    }
+})
+
 if(localStorage.getItem("username") == null) {
     localStorage.setItem("username", "unknown")
 }
@@ -227,16 +244,19 @@ form.addEventListener('submit', (e) => {
 
 videoPlayer.addEventListener('play', videoControlsHandler, false);
 videoPlayer.addEventListener('pause', videoControlsHandler, false);
-videoPlayer.addEventListener('timeupdate', videoControlsHandler, false);
+videoPlayer.addEventListener('d', videoControlsHandler, false);
 
 function videoControlsHandler(e) {
     if (e.type == 'play') {
+        socket.emit("playerControl", {mesasge: "play", context: ""}) 
         console.log("video played")
     } else if (e.type == 'pause') {
+        socket.emit("playerControl", {message: "pause", context: ""})
         console.log("video paused")
     } else if (e.type == 'timeupdate') {
         var timeDifference = lastcurrentime - videoPlayer.currentTime
         if(timeDifference < -1 || timeDifference > 1) {
+            socket.emit("playerControl", {message: "timeUpdated", context: videoPlayer.currentTime}) 
             console.log("time updated to", videoPlayer.currentTime)
         }
         lastcurrentime = videoPlayer.currentTime
