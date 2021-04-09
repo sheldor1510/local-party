@@ -62,8 +62,8 @@ socket.on('playerControlUpdate', data => {
             videoPlayer.play()
             let minutes = Math.floor(Math.round(data.context)/60)
             let seconds = Math.round(data.context) % 60
-            minutes < 10 ? '0'+ minutes : minutes
-            seconds < 10 ? '0'+ seconds : seconds 
+            minutes < 10 ? '0'+ minutes.toString : minutes.toString
+            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
             append({
                 name: "Local Party", 
                 content: `${data.username} played the video from ${minutes}:${seconds}`,
@@ -78,8 +78,8 @@ socket.on('playerControlUpdate', data => {
             videoPlayer.pause()
             let minutes = Math.floor(Math.round(data.context)/60) 
             let seconds = Math.round(data.context) % 60 
-            minutes < 10 ? '0'+ minutes : minutes
-            seconds < 10 ? '0'+ seconds : seconds
+            minutes < 10 ? '0'+ minutes.toString : minutes.toString
+            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
             append({
                 name: "Local Party", 
                 content: `${data.username} paused the video at ${minutes}:${seconds}`,
@@ -277,8 +277,8 @@ function videoControlsHandler(e) {
             socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime}) 
             let minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
             let seconds = Math.round(videoPlayer.currentTime) % 60
-            minutes < 10 ? '0'+ minutes : minutes
-            seconds < 10 ? '0'+ seconds : seconds 
+            minutes < 10 ? '0'+ minutes.toString : minutes.toString
+            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
             append({
                 name: "Local Party", 
                 content: `You played the video from ${minutes}:${seconds}`,
@@ -294,8 +294,8 @@ function videoControlsHandler(e) {
             socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime})
             let minutes = Math.floor(Math.round(videoPlayer.currentTime)/60) 
             let seconds = Math.round(videoPlayer.currentTime) % 60
-            minutes < 10 ? '0'+ minutes : minutes
-            seconds < 10 ? '0'+ seconds : seconds 
+            minutes < 10 ? '0'+ minutes.toString : minutes.toString
+            seconds < 10 ? '0'+ seconds.toString : seconds.toString 
             append({
                 name: "Local Party", 
                 content: `You paused the video at ${minutes}:${seconds}`,
