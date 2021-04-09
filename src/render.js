@@ -31,11 +31,6 @@ socket.on('user-joined', data => {
     }
 })
 
-socket.on('updateMembers', data => {
-    if(data.roomCode == localStorage.getItem("roomCode")){
-        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
-    }
-})
 
 socket.on('receive', data => {
     if(data.roomCode == localStorage.getItem("roomCode")) {
