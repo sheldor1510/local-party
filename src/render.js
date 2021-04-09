@@ -28,7 +28,6 @@ socket.on('user-joined', data => {
             pfp: data.pfp
         })
         document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
-        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
@@ -57,7 +56,6 @@ socket.on('left', data => {
             content: `${data.name} left the party.`,
             pfp: data.pfp,
         })
-        socket.emit('increaseMembers', {roomCode : data.roomCode, members: data.members})
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
