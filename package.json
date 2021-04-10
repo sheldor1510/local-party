@@ -2,7 +2,7 @@
   "name": "local-party",
   "productName": "local-party",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "A desktop app where you can create rooms and chat while watching local video files synchronized with your friends.",
   "main": "src/index.js",
   "scripts": {
     "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",

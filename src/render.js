@@ -82,7 +82,7 @@ socket.on('playerControlUpdate', data => {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+                pfp: "https://i.imgur.com/4FilLiC.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -104,7 +104,7 @@ socket.on('playerControlUpdate', data => {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+                pfp: "https://i.imgur.com/4FilLiC.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -188,13 +188,13 @@ document.addEventListener("click", function (e) {
                     const resp = await result.json()
                     if(resp.message == "success") {
                         localStorage.setItem("roomCode", roomCode)
-                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: `Welcome to ${roomName}`, pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: `Welcome to ${roomName}`, pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://i.imgur.com/4FilLiC.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") });
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"});
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"});
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
                     }
@@ -242,13 +242,13 @@ document.addEventListener("click", function (e) {
                         document.getElementById("roomCodeText").innerHTML = resp.roomCode
                         localStorage.setItem("roomCode", inputRoomCode)
                         videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
-                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: `Welcome to ${resp.roomName}`, pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
-                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"})
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: `Welcome to ${resp.roomName}`, pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://i.imgur.com/4FilLiC.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") });
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"});
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"});
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
@@ -308,7 +308,7 @@ function videoControlsHandler(e) {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+                pfp: "https://i.imgur.com/4FilLiC.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         } 
@@ -331,7 +331,7 @@ function videoControlsHandler(e) {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://cdn.discordapp.com/attachments/751511569971675216/818749306893762570/Untitled-3.png"
+                pfp: "https://i.imgur.com/4FilLiC.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
