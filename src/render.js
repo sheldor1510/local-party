@@ -193,8 +193,8 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "https://i.imgur.com/4FilLiC.png"})
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://i.imgur.com/4FilLiC.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") });
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"});
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") })
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
                     }
@@ -247,8 +247,8 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "https://i.imgur.com/4FilLiC.png"})
                         append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://i.imgur.com/4FilLiC.png"})
                         append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") });
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"});
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") })
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
                     }   
