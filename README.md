@@ -13,9 +13,9 @@ A desktop app where you can create rooms and chat while watching local video fil
 
 ## Getting Started
 
-1) Download the desktop app from [here]().
+1) Download the desktop app from [here](https://drive.google.com/drive/folders/13jePWcpD6dJqrYY4W7FPAUeV7qY7FFFA?usp=sharing).
 
-2) Open the folder and run the local-party.exe.
+2) After unzipping, open the folder and run the local-party.exe.
 
 3) Set your username by clicking on the settings icon on the home page.
 
