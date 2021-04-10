@@ -27,6 +27,10 @@ A desktop app where you can create rooms and chat while watching local video fil
 
 7) You can leave the party by clicking the leave button on the room page.
 
+## Video
+
+[![Local Party Demo](https://img.youtube.com/vi/Ym7hkFfNIYg/hqdefault.jpg)](https://youtu.be/Ym7hkFfNIYg)
+
 ## Contributing
 
 1) Fork
