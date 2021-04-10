@@ -25,8 +25,11 @@ body {
   height: 100vh;
 }
 
+.logo{
+  margin-top: 6rem;
+}
+
 .head{
-  margin-top: 16rem;
   font-size: 3.5rem;
   color: white;
 }
@@ -68,23 +71,10 @@ body {
   display: none;
 }
 
-.pfp-col{
-  margin-top: 9rem;
+.logo-pfp{
+margin-top: 5rem;
 }
 
-.pfp{
-  height: 9rem;
-  width: 9rem;
-  border-radius: 50%;
-}
-.pfp-outer-circle{
-  padding: 0.8rem;
-  margin: auto;
-  height: 11rem;
-  width: 11rem;
-  border-radius: 50%;
-  border: white 4px solid;
-}
 
 .pfp-head{
   font-size: 3.5rem;
