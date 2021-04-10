@@ -27,7 +27,14 @@ socket.on('user-joined', data => {
             content: `${data.name} just popped into the party.`,
             pfp: data.pfp
         })
+        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
+    }
+})
+
+socket.on('updateMemberInfo', data => {
+    if(data.roomCode == localStorage.getItem("roomCode")){
+        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
     }
 })
 
@@ -50,6 +57,7 @@ socket.on('left', data => {
             content: `${data.name} left the party.`,
             pfp: data.pfp,
         })
+        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
@@ -252,7 +260,7 @@ document.addEventListener("click", function (e) {
     // localStorage.getItem("joinVideoPath")
     if(e.target.id == "roomLeaveButton") {
         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
-        socket.emit('disconnected')
+        socket.emit('disconnectUser')
         location.reload()
     }
     if(e.target.id == "backButton") {
