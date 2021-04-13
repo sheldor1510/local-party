@@ -115,9 +115,8 @@
                 >
               </div>
               <div class="mt-3">
-                <div id="fileChooser" class="dragDrop">
-                  Drag your video file over here
-                </div><br>
+                <input type="file" id="file-id" onchange="onChangeFile();">
+                <br>
                 <p id="filePathText"></p>
               </div>
               <div class="mt-4">
@@ -155,9 +154,8 @@
                 >
               </div>
               <div class="mt-3">
-                <div id="joinRoomfileChooser" class="dragDrop">
-                  Drag your video file over here
-                </div><br>
+                <input type="file" id="join-file-id" onchange="onChangeJoinFile();">
+                <br>
                 <p id="joinRoomfilePathText"></p>
               </div>
               <div class="mt-4">
@@ -201,7 +199,6 @@
                 <source id="videoSrc" src="test.mp4" type="video/mp4" />
               </video>
             </div>
-            <img src="loading.gif" alt="loader" id="loader"/>
           </div>
           <div class="col-3 text-center">
             <div class="row members">

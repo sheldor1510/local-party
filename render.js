@@ -5,8 +5,6 @@ function randomString(length, chars) {
 }
 
 var videoPlayer = document.getElementById("video-player")
-const loader = document.getElementById("loader")
-loader.style.display = "none"
 let lastcurrentime = 0;
 
 const landingPage = document.getElementById("landing")
@@ -82,7 +80,7 @@ socket.on('playerControlUpdate', data => {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://i.imgur.com/4FilLiC.png"
+                pfp: "icon.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -104,7 +102,7 @@ socket.on('playerControlUpdate', data => {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://i.imgur.com/4FilLiC.png"
+                pfp: "icon.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -188,12 +186,12 @@ document.addEventListener("click", function (e) {
                     const resp = await result.json()
                     if(resp.message == "success") {
                         localStorage.setItem("roomCode", roomCode)
-                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: `Welcome to ${roomName}`, pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "icon.png"})
+                        append({name: "Local Party", content: `Welcome to ${roomName}`, pfp: "icon.png"})
+                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "icon.png"})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "icon.png"})
+                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "icon.png"})
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "icon.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") })
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
@@ -213,7 +211,7 @@ document.addEventListener("click", function (e) {
         if(inputRoomCode.length == 0) {
             document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
         } else {
-            if(localStorage.getItem("joinVideoPath") == null || localStorage.getItem("videoSize") == null) {
+            if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null) {
                 document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
             } else {
                 var myHeaders = new Headers();
@@ -241,13 +239,13 @@ document.addEventListener("click", function (e) {
                         document.getElementById("roomNameText").innerHTML = resp.roomName 
                         document.getElementById("roomCodeText").innerHTML = resp.roomCode
                         localStorage.setItem("roomCode", inputRoomCode)
-                        videoPlayer.setAttribute("src", localStorage.getItem("joinVideoPath"))
-                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: `Welcome to ${resp.roomName}`, pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "https://i.imgur.com/4FilLiC.png"})
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "https://i.imgur.com/4FilLiC.png"})
+                        videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "icon.png"})
+                        append({name: "Local Party", content: `Welcome to ${resp.roomName}`, pfp: "icon.png"})
+                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "icon.png"})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "icon.png"})
+                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "icon.png"})
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "icon.png"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") })
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
@@ -257,7 +255,7 @@ document.addEventListener("click", function (e) {
             }
         }
     }
-    // localStorage.getItem("joinVideoPath")
+
     if(e.target.id == "roomLeaveButton") {
         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
         socket.emit('disconnectUser')
@@ -308,7 +306,7 @@ function videoControlsHandler(e) {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://i.imgur.com/4FilLiC.png"
+                pfp: "icon.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         } 
@@ -331,7 +329,7 @@ function videoControlsHandler(e) {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "https://i.imgur.com/4FilLiC.png"
+                pfp: "icon.png"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -341,50 +339,20 @@ function videoControlsHandler(e) {
     }
 }
 
-const fileChooser = document.getElementById("fileChooser")
+function onChangeFile() {
+	const file = document.getElementById("file-id").files[0]
+    const path = (window.URL || window.webkitURL).createObjectURL(file)
+    const size = file.size
+    localStorage.setItem("videoSize", size)
+    localStorage.setItem("videoPath", path)
+    document.getElementById("joinRoomfilePathText").innerHTML = "File Path: " + path
+}
 
-fileChooser.addEventListener('drop', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const filePath = e.dataTransfer.files[0].path
-    fileChooser.style.display = "none"
-    loader.style.display = "block"
-    const fileSize = await e.dataTransfer.files[0].size
-    localStorage.setItem("videoSize", fileSize)
-    localStorage.setItem("videoPath", filePath)
-    document.getElementById("filePathText").innerHTML = "File Path: " + filePath
-    // fileChooser.style.display = "none" // use this to hide the file chooser
-    videoPlayer.setAttribute("src", filePath)
-    videoPlayer.load()
-    loader.style.display = "none"
-    fileChooser.style.display = "block"
-});
-
-fileChooser.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-});
-
-const joinRoomfileChooser = document.getElementById("joinRoomfileChooser")
-
-joinRoomfileChooser.addEventListener('drop', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const filePath = e.dataTransfer.files[0].path
-    joinRoomfileChooser.style.display = "none"
-    loader.style.display = "block"
-    const fileSize = await e.dataTransfer.files[0].size
-    localStorage.setItem("videoSize", fileSize)
-    localStorage.setItem("joinVideoPath", filePath)
-    document.getElementById("joinRoomfilePathText").innerHTML = "File Path: " + filePath
-    // joinRoomfileChooser.style.display = "none" // use this to hide the file chooser
-    videoPlayer.setAttribute("src", filePath)
-    videoPlayer.load()
-    loader.style.display = "none"
-    joinRoomfileChooser.style.display = "block"
-});
-
-joinRoomfileChooser.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-});
+function onChangeJoinFile() {
+    const file = document.getElementById("join-file-id").files[0]
+    const path = (window.URL || window.webkitURL).createObjectURL(file)
+    const size = file.size
+    localStorage.setItem("videoSize", size)
+    localStorage.setItem("videoPath", path)
+    document.getElementById("joinRoomfilePathText").innerHTML = "File Path: " + path
+}
