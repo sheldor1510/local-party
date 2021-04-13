@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/abc159cb0a.js" crossorigin="anonymous"></script>
-    <script defer src="render.js"></script>
+    <!-- <script defer src="render.js"></script> -->
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
@@ -41,51 +41,6 @@
             </button>
           </div>
         </div>
-        <div class="row justify-content-end settings">
-          <div class="col-1">
-              <i class="fas fa-cog icon" id="profileButton"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Profile Page -->
-    <div class="profile" id="profile">
-      <div class="container-fluid">
-        <div class="row mt-3">
-          <div class="col-1 text-center">
-            <i class="fas fa-arrow-left back-btn" id="backButton"></i>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 logo-pfp text-center">
-            <img src="icon.png" width="300px" alt="Logo">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <h1 class="pfp-head">
-              Profile
-            </h1>
-          </div>
-          <div class="col-12 text-center">
-              <p id="profilePageText"></p>
-              <div class="name">
-                <input 
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Username"
-                  required
-                >
-              </div>
-              <div class="submit mt-3">
-                  <button class="buttons" style="width: 10rem;" id="profileSaveButton">
-                    Save   
-                  </button>
-              </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -99,25 +54,38 @@
         </div>
         <div class="row">
           <div class="col-12 text-center create-col">
-            <h1 class="pfp-head">
+            <h1 class="create-head">
               Create Room
             </h1>
           </div>
-          <div class="col-12 text-center mt-3">
+          <div class="col-12 text-center mt-2">
               <p id="createRoomText"></p>
               <div>
-                <input 
+                <div class="mt-1 mb-1">
+                  <input 
+                  class=""
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="username"
+                  required
+                >
+                </div>
+                <div class="mt-3">
+                  <input 
+                  class=""
                   type="text"
                   name="roomname"
                   id="roomname"
-                  placeholder="Room Name"
+                  placeholder="room name"
                   required
                 >
-              </div>
-              <div class="mt-3">
-                <input type="file" id="file-id" onchange="onChangeFile();">
-                <br>
-                <p id="filePathText"></p>
+                </div>
+                <div class="mt-4">
+                  <input type="file" class="form-control fileInput" id="file-id" onchange="onChangeFile();">
+                  <br>
+                  <p id="filePathText"></p>
+                </div>
               </div>
               <div class="mt-4">
                   <button class="buttons" style="width: 10rem;" id="roomCreateButton">
@@ -139,24 +107,36 @@
         </div>
         <div class="row">
           <div class="col-12 text-center join-col">
-            <h1 class="pfp-head">
+            <h1 class="create-head">
               Join Room
             </h1>
           </div>
           <div class="col-12 text-center mt-3">
               <p id="joinRoomText"></p>
-              <div>
+              <div class="mt-1 mb-1">
                 <input 
-                  type="text"
-                  name="roomCode"
-                  id="roomCode"
-                  placeholder="Room Code"
-                >
+                class=""
+                type="text"
+                name="username"
+                id="username"
+                placeholder="username"
+                required
+              >
               </div>
               <div class="mt-3">
-                <input type="file" id="join-file-id" onchange="onChangeJoinFile();">
+                <input 
+                class=""
+                type="text"
+                name="roomCode"
+                id="roomCode"
+                placeholder="room code"
+                required
+              >
+              </div>
+              <div class="mt-4">
+                <input type="file" class="form-control fileInput" id="file-id" onchange="onChangeFile();">
                 <br>
-                <p id="joinRoomfilePathText"></p>
+                <p id="filePathText"></p>
               </div>
               <div class="mt-4">
                 <button class="buttons" style="width: 10rem;" id="roomJoinButton">
@@ -171,74 +151,83 @@
     <!-- Room Page -->
     <div class="room" id="room">
       <div class="container-fluid">
-        <div class="row mt-3 justify-content-center">
-          <div class="col-9 left-side">
-            <h2 id="roomNameText">
-              Local Room
-            </h2>
-            <h4>
-              Code- <span id="roomCodeText">xxxx</span>
-            </h4>
-          </div>
-          <div class="col-1 right-side">
-            <button class="leave-btn" id="roomLeaveButton">
-              Leave
-            </button>
-          </div>
-        </div>
-        <div class="row mt-4 justify-content-center">
-          <div class="col-8 text-center">
-            <div class="video video-player-conatiner">
-              <video
-                id="video-player"
-                class="video-js vjs-big-play-centered"
-                controls
-                preload="metadata"
-                data-setup='{}'
-              >
-                <source id="videoSrc" src="test.mp4" type="video/mp4" />
-              </video>
+        <div class="row">
+            <div class="col-9 left-side">
+                <div class="video video-player-conatiner">
+                    <video
+                      id="video-player"
+                      class="video-js vjs-big-play-centered"
+                      controls
+                      preload="metadata"
+                      data-setup='{}'
+                    >
+                      <source id="videoSrc" src="test.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <!-- <img src="loading.gif" alt="loader" id="loader"/> -->
             </div>
-          </div>
-          <div class="col-3 text-center">
-            <div class="row members">
-              <div class="col-12">
-                <p id="memberCount">People in party: 1</p>
-              </div>
-            </div>
-            <div class="chat">
-              <div class="row mt-2 mb-2 messages" id="messages-box">
-              </div>
-              <div class="row">
-                <div class="col-12">
-                    <div class="row justify-content-center chattimg">
-                      <form action="#" id="send-form">
-                        <div class="col-12">
-                          <input 
-                            type="text"
-                            name="messageInp"
-                            id="messageInp"
-                            placeholder="Message"
-                          >
-                        </div>
-                      </form>
+            <div class="col-3 right-side">
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <h6 class="room-code">Room Name</h6>
                     </div>
                 </div>
-              </div>
+                <hr class="mt-1" style="height: 0.1rem; width: 90%; background-color: white; margin: auto;">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-2 text-center" data-toggle="tooltip" data-placement="bottom" title="Leave Party">
+                                <i class="fas fa-sign-out-alt icon"></i>
+                            </div>
+                            <div class="col-8 text-center">
+                                <h6 class="room-code" data-toggle="tooltip" data-placement="left" title="Room Code">1234</h6>
+                            </div>
+                            <div class="col-2 text-center">
+                                <h6 class="members" data-toggle="tooltip" data-placement="left" title="People in party: 1">
+                                    <i class="fas fa-user-friends"></i>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mb-2 messages" id="messages-box">
+                            <div class="col-12 mt-3" id="message">
+                                <span class="username">Chintu: </span>hello bhai m hu ek udta robot doraemon bhai
+                            </div>
+                            <div class="col-12 mt-3" id="message">
+                                <span class="username">Chintu: </span>hello bhai m hu ek udta robot doraemon bhai
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row justify-content-center chattimg">
+                                  <form action="#" id="send-form">
+                                    <div class="col-12">
+                                      <input 
+                                        class="form-control"
+                                        type="text"
+                                        name="messageInp"
+                                        id="messageInp"
+                                        placeholder="Message"
+                                      >
+                                    </div>
+                                  </form>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-
-    <!-- Test Page -->
-    <!-- <h1 id="title">Local Party</h1>
-    <div class="video-player-container">
-      
-    </div>
-     -->
+  </div>
     <script src="https://local-party.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script>
+      var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+      var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
+          return new bootstrap.Tooltip(tooltipTriggerE1)
+      });
+  </script>
     <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
   </body>
 </html>

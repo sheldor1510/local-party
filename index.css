@@ -1,7 +1,12 @@
+@font-face {
+    font-family: 'Airbnb';
+    src: URL('../fonts/AirbnbCerealBlack.ttf') format('truetype');
+}
+
 body {
   background-color: #111316;
   color: white;
-  font-family: 'Lexend Deca' , sans-serif;
+  font-family: 'Lexend Deca', sans-serif
 }
 
 .back-btn{
@@ -16,7 +21,7 @@ body {
 /* Landing Page Start */
 
 .landing{
-  display: none;
+  display: block;
 }
 
 .main{
@@ -25,22 +30,23 @@ body {
 }
 
 .logo{
-  margin-top: 6rem;
+  margin-top: 10vh;
 }
 
 .head{
   font-size: 3.5rem;
   color: white;
+  font-family: 'Airbnb';
 }
 
 .buttons{
-  border-radius: 50px;
+  border-radius: 5px;
   background-color: white;
   border: none;
   color: #111316;
   font-size: 1.3rem;
-  width: 15rem;
-  height: 3.5rem;
+  width: 13rem;
+  height: 3rem;
 }
 
 .settings{
@@ -64,28 +70,28 @@ body {
 
 /* Landing Page End */
 
-/* Profile Page Start */
+/* Create Page Start */
 
-.profile{
+.create{
   display: none;
 }
 
-.logo-pfp{
-margin-top: 5rem;
+.create-head{
+  font-family: 'Airbnb';
+  font-size: 3.5rem;
 }
 
-
-.pfp-head{
-  font-size: 3.5rem;
-  color: white;
+.create-col{
+  margin-top: 20vh;
 }
 
 input{
-  color: gray;
-  border-radius: 50px;
+  background-color: #111316;
+  color: white;
+  border-radius: 5px;
   width: 20rem;
   font-size: 1.1rem;
-  border: none;
+  border: 1px solid white;
   padding: 10px 15px;
 }
 
@@ -93,16 +99,9 @@ input:focus{
   outline: none;
 }
 
-/* Profile Page End */
-
-/* Create Page Start */
-
-.create{
-  display: none;
-}
-
-.create-col{
-  margin-top: 14rem;
+.fileInput{
+  width: 20rem;
+  margin: auto;
 }
 
 .dragDrop{
@@ -127,7 +126,7 @@ input:focus{
 }
 
 .join-col{
-  margin-top: 16rem;
+  margin-top: 20vh;
 }
 
 /* Join Page End */
@@ -139,79 +138,34 @@ input:focus{
 }
 
 .left-side{
-  margin-left: -4rem;
+  background-color: black;
+  height: 100vh;
+  width: 78%;
 }
 
 .right-side{
-  margin-right: 1rem;
-}
-
-
-.leave-btn{
-  margin-top: 1rem;
-  background-color: #dc3545;
-  border-radius: 50px;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  width: 11rem;
-  height: 3rem;
+  height: 100vh;
+  width: 22%;
+  background-color: #111316;
 }
 
 .video{
-  width: 98%;
-  height: 40rem;
+  width: 100%;
+  height: 100%;
   border-radius: 30px;
 }
 
 #video-player{
   width: 100%;
   height: 100%;
-  background: none;
 }
 
-/* #loader {
-  margin: auto;
-  margin-top: 30px;
-  height: 60px;
-  width: 60px;
-  text-align: center;
-} */
-
-.chat{
-  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.25), rgba(255,255,255,0.05));
-  border: rgba(255, 255, 255, 0.30) 2px solid;
-  width: 98%;
-  height: 90%;
-  position: relative;
-  border-radius: 30px;
+.icon{
+  font-size: 1.5rem;
 }
 
-.pfp-small{
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 50px;
-}
-
-.messages{
-  height: 31rem;
-  overflow-y: scroll;
-}
-
-.chattimg{
-  position: absolute;
-  bottom: 10px;
-}
-
-.message{
-  padding-left: 2.6rem;
-  text-align: left;
-  font-size: 0.9rem;
-}
-
-.message span{
-  color: rgb(216, 208, 208);
-  font-size: 1rem;
+.room-code, .members{
+  font-size: 1.2rem;
 }
 
 ::-webkit-scrollbar{
@@ -228,28 +182,29 @@ input:focus{
   border-radius: 50px;
 }
 
-
-.send-box{
-  width: 3rem;
-  height: 3rem;
-  background-color: rgb(59, 58, 58);
-  border-radius: 10px;
+#messages-box{
+  display: block;
 }
 
-.send-box:hover{
-  cursor: pointer;
+.messages{
+  height: 83vh;
+  overflow-y: scroll;
 }
 
-.send{
-  margin-top: 0.8rem;
-  font-size: 1.3rem;
+.chattimg{
+  position: absolute;
+  bottom: 20px;
+  width: 22%;
 }
 
 #messageInp{
-  border-radius: 10px;
+  border-radius: 5px;
+  height: 2.5rem;
+  width: inherit;
+  box-shadow: none;
+  border: none;
   color: white;
   background-color: gray;
-  margin-left: 1rem;
 }
 
 #messageInp::placeholder{
@@ -257,4 +212,7 @@ input:focus{
   font-size: 0.8rem;
 }
 
+#message{
+  height: fit-content;
+}
 /* Room Page End */
