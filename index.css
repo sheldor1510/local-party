@@ -21,7 +21,7 @@ body {
 /* Landing Page Start */
 
 .landing{
-  display: block;
+  display: none;
 }
 
 .main{
@@ -187,7 +187,7 @@ input:focus{
 }
 
 .messages{
-  height: 83vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 

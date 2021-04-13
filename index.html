@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/abc159cb0a.js" crossorigin="anonymous"></script>
-    <!-- <script defer src="render.js"></script> -->
+    <script defer src="render.js"></script>
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
@@ -66,7 +66,7 @@
                   class=""
                   type="text"
                   name="username"
-                  id="username"
+                  id="create-username"
                   placeholder="username"
                   required
                 >
@@ -118,7 +118,7 @@
                 class=""
                 type="text"
                 name="username"
-                id="username"
+                id="join-username"
                 placeholder="username"
                 required
               >
@@ -134,7 +134,7 @@
               >
               </div>
               <div class="mt-4">
-                <input type="file" class="form-control fileInput" id="file-id" onchange="onChangeFile();">
+                <input type="file" class="form-control fileInput" id="join-file-id" onchange="onChangeJoinFile();">
                 <br>
                 <p id="filePathText"></p>
               </div>
@@ -169,7 +169,7 @@
             <div class="col-3 right-side">
                 <div class="row mt-3">
                     <div class="col-12 text-center">
-                        <h6 class="room-code">Room Name</h6>
+                        <h6 class="room-code" id="roomNameText">Room Name</h6>
                     </div>
                 </div>
                 <hr class="mt-1" style="height: 0.1rem; width: 90%; background-color: white; margin: auto;">
@@ -177,25 +177,19 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-2 text-center" data-toggle="tooltip" data-placement="bottom" title="Leave Party">
-                                <i class="fas fa-sign-out-alt icon"></i>
+                                <i class="fas fa-sign-out-alt icon" id="roomLeaveButton"></i>
                             </div>
                             <div class="col-8 text-center">
-                                <h6 class="room-code" data-toggle="tooltip" data-placement="left" title="Room Code">1234</h6>
+                                <h6 class="room-code" data-toggle="tooltip" data-placement="left" title="Room Code" id="roomCodeText">1234</h6>
                             </div>
                             <div class="col-2 text-center">
-                                <h6 class="members" data-toggle="tooltip" data-placement="left" title="People in party: 1">
+                                <h6 id="pplinparty" class="members" data-toggle="tooltip" data-placement="left" title="People in party: 1">
                                     <i class="fas fa-user-friends"></i>
                                 </h6>
                             </div>
                         </div>
                         <div class="row mt-2 mb-2 messages" id="messages-box">
-                            <div class="col-12 mt-3" id="message">
-                                <span class="username">Chintu: </span>hello bhai m hu ek udta robot doraemon bhai
-                            </div>
-                            <div class="col-12 mt-3" id="message">
-                                <span class="username">Chintu: </span>hello bhai m hu ek udta robot doraemon bhai
-                            </div>
-                            
+                          
                         </div>
                         <div class="row">
                             <div class="col-12">
@@ -203,6 +197,7 @@
                                   <form action="#" id="send-form">
                                     <div class="col-12">
                                       <input 
+                                        autocomplete="off"
                                         class="form-control"
                                         type="text"
                                         name="messageInp"
@@ -222,12 +217,6 @@
   </div>
     <script src="https://local-party.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script>
-      var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
-      var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
-          return new bootstrap.Tooltip(tooltipTriggerE1)
-      });
-  </script>
     <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
   </body>
 </html>

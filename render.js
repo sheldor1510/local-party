@@ -15,7 +15,7 @@ const roomPage = document.getElementById("room")
 const socket = io.connect("https://local-party.herokuapp.com")
 
 const append = message => {
-    document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mb-4"><div class="row justify-content-center"><div class="col-1 text-center"><div class="pfp-small"><img src=${message.pfp} alt="pfp" class="pfp-small"></div></div><div class="col-10 message"><span>${message.name}</span><br>${message.content}</div></div></div>`
+    document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mt-3" id="message"><span class="username" style="color: ${message.pfp}">${message.name}: </span>${message.content}</div>`
 }
 
 socket.on('user-joined', data => {
@@ -25,14 +25,14 @@ socket.on('user-joined', data => {
             content: `${data.name} just popped into the party.`,
             pfp: data.pfp
         })
-        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
+        document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
 
 socket.on('updateMemberInfo', data => {
     if(data.roomCode == localStorage.getItem("roomCode")){
-        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
+        document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
     }
 })
 
@@ -80,7 +80,7 @@ socket.on('playerControlUpdate', data => {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "icon.png"
+                pfp: "#f3dfbf"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -102,7 +102,7 @@ socket.on('playerControlUpdate', data => {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "icon.png"
+                pfp: "#f3dfbf"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -113,7 +113,7 @@ if(localStorage.getItem("username") == null) {
     localStorage.setItem("username", "unknown")
 }
 
-const colors = ['F26E5C', 'FCE060', '63E683', '6085FC', 'F52C93']
+const colors = ['#F26E5C', '#FCE060', '#63E683', '#6085FC', '#F52C93']
 
 function random_item(items) {
     return items[Math.floor(Math.random() * items.length)];
@@ -122,30 +122,12 @@ function random_item(items) {
 const color = random_item(colors)
 
 if(localStorage.getItem("pfpUrl") == null) {
-    localStorage.setItem("pfpUrl", `https://dummyimage.com/500x500/${color}/${color}`)
+    localStorage.setItem("pfpUrl", color)
 }
 
 landingPage.style.display = "block"
 
 document.addEventListener("click", function (e) {
-    if (e.target.id == "profileButton") {
-        landingPage.style.display = "none"
-        if(localStorage.getItem("username") != null) {
-            document.getElementById("username").value = localStorage.getItem("username")
-        }
-        profilePage.style.display = "block"
-    }
-    if(e.target.id == "profileSaveButton") {
-        const inputVal = document.getElementById("username").value
-        if(inputVal == "") {
-            document.getElementById("profilePageText").innerHTML = "Please fill in all the fields"
-        } else {
-            localStorage.setItem("username", inputVal)
-            profilePage.style.display = "none"
-            landingPage.style.display = "block"
-            document.getElementById("profilePageText").innerHTML = ""
-        }
-    }
     if(e.target.id == "createRoomButton") {
         landingPage.style.display = "none"
         createPage.style.display = "block"
@@ -156,10 +138,11 @@ document.addEventListener("click", function (e) {
             console.log("error")
             document.getElementById("createRoomText").innerHTML = "Please fill in all the fields"
         } else {
-            if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null) {
+            if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null || document.getElementById("create-username").value.length == 0) {
                 document.getElementById("createRoomText").innerHTML = "Please fill in all the fields"
             } else {
                 localStorage.setItem("roomName", roomName)
+                localStorage.setItem("username", document.getElementById("create-username").value)
                 const roomCode = randomString(4, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
                 document.getElementById("createRoomText").innerHTML = ""
                 document.getElementById("roomNameText").innerHTML = roomName
@@ -185,13 +168,17 @@ document.addEventListener("click", function (e) {
                 .then( async (result) => {
                     const resp = await result.json()
                     if(resp.message == "success") {
+                        var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+                        var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
+                            return new bootstrap.Tooltip(tooltipTriggerE1)
+                        });
                         localStorage.setItem("roomCode", roomCode)
-                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "icon.png"})
-                        append({name: "Local Party", content: `Welcome to ${roomName}`, pfp: "icon.png"})
-                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "icon.png"})
-                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "icon.png"})
-                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "icon.png"})
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "icon.png"})
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: `Welcome to ${roomName}`, pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: `Share the room code (${roomCode}) with others to invite them to the party.`, pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "#f3dfbf"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") })
                         createPage.style.display = "none"
                         roomPage.style.display = "block"
@@ -211,7 +198,7 @@ document.addEventListener("click", function (e) {
         if(inputRoomCode.length == 0) {
             document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
         } else {
-            if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null) {
+            if(localStorage.getItem("videoPath") == null || localStorage.getItem("videoSize") == null || document.getElementById("join-username").value.length == 0) {
                 document.getElementById("joinRoomText").innerHTML = "Please fill in all the fields"
             } else {
                 var myHeaders = new Headers();
@@ -238,14 +225,19 @@ document.addEventListener("click", function (e) {
                         document.getElementById("joinRoomText").innerHTML = ""
                         document.getElementById("roomNameText").innerHTML = resp.roomName 
                         document.getElementById("roomCodeText").innerHTML = resp.roomCode
+                        var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+                        var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
+                            return new bootstrap.Tooltip(tooltipTriggerE1)
+                        });
                         localStorage.setItem("roomCode", inputRoomCode)
+                        localStorage.setItem("username", document.getElementById("join-username").value)
                         videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
-                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "icon.png"})
-                        append({name: "Local Party", content: `Welcome to ${resp.roomName}`, pfp: "icon.png"})
-                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "icon.png"})
-                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "icon.png"})
-                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "icon.png"})
-                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "icon.png"})
+                        append({name: "Local Party", content: "Local Party allows you to watch local videos with your friends synchronously while chatting.", pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: `Welcome to ${resp.roomName}`, pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: `Share the room code (${resp.roomCode}) with others to invite them to the party.`, pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: "They would need to have the same video file with them to join this watch party.", pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: "You can change your username in the settings page.", pfp: "#f3dfbf"})
+                        append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "#f3dfbf"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") })
                         joinPage.style.display = "none"
                         roomPage.style.display = "block"
@@ -306,7 +298,7 @@ function videoControlsHandler(e) {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "icon.png"
+                pfp: "#f3dfbf"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         } 
@@ -329,7 +321,7 @@ function videoControlsHandler(e) {
             append({
                 name: "Local Party", 
                 content: contentString,
-                pfp: "icon.png"
+                pfp: "#f3dfbf"
             })
             document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
         }
@@ -345,7 +337,6 @@ function onChangeFile() {
     const size = file.size
     localStorage.setItem("videoSize", size)
     localStorage.setItem("videoPath", path)
-    document.getElementById("joinRoomfilePathText").innerHTML = "File Path: " + path
 }
 
 function onChangeJoinFile() {
@@ -354,5 +345,4 @@ function onChangeJoinFile() {
     const size = file.size
     localStorage.setItem("videoSize", size)
     localStorage.setItem("videoPath", path)
-    document.getElementById("joinRoomfilePathText").innerHTML = "File Path: " + path
 }
