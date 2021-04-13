@@ -21,7 +21,7 @@ body {
 /* Landing Page Start */
 
 .landing{
-  display: none;
+  display: block;
 }
 
 .main{
@@ -186,54 +186,9 @@ input:focus{
   display: block;
 }
 
-
-@media(max-width: 1700px){
-  .messages{
-    height: 80vh;
-    overflow-y: scroll;
-  }
-}
-
-@media(max-width: 1500px){
-  .messages{
-    height: 77vh;
-    overflow-y: scroll;
-  }
-}
-
-@media(max-width: 1200px){
-  .messages{
-    height: 75vh;
-    overflow-y: scroll;
-  }
-}
-
-@media(max-width: 1000px){
-  .messages{
-    height: 72vh;
-    overflow-y: scroll;
-  }
-}
-
-@media(max-width: 800px){
-  .messages{
-    height: 70vh;
-    overflow-y: scroll;
-  }
-}
-
-@media(max-width: 600px){
-  .messages{
-    height: 67vh;
-    overflow-y: scroll;
-  }
-}
-
-@media(max-width: 400px){
-  .messages{
-    height: 64vh;
-    overflow-y: scroll;
-  }
+.messages{
+  height: 83vh;
+  overflow-y: scroll;
 }
 
 .chattimg{
