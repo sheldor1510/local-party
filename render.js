@@ -26,6 +26,10 @@ socket.on('user-joined', data => {
             pfp: data.pfp
         })
         document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
+        var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+        var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
+            return new bootstrap.Tooltip(tooltipTriggerE1)
+            });
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
@@ -33,6 +37,10 @@ socket.on('user-joined', data => {
 socket.on('updateMemberInfo', data => {
     if(data.roomCode == localStorage.getItem("roomCode")){
         document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
+        var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+        var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
+            return new bootstrap.Tooltip(tooltipTriggerE1)
+            });
     }
 })
 
@@ -55,7 +63,11 @@ socket.on('left', data => {
             content: `${data.name} left the party.`,
             pfp: data.pfp,
         })
-        document.getElementById('memberCount').innerHTML = `People in party: ${data.members}`
+        document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
+        var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+        var toolTipList = toolTipTriggerList.map(function (tooltipTriggerE1){
+            return new bootstrap.Tooltip(tooltipTriggerE1)
+            });
         document.getElementById("messages-box").scrollTop = document.getElementById("messages-box").scrollHeight
     }
 })
