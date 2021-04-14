@@ -21,7 +21,7 @@ body {
 /* Landing Page Start */
 
 .landing{
-  display: block;
+  display: none;
 }
 
 .main{

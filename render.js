@@ -14,6 +14,11 @@ const joinPage = document.getElementById("join")
 const roomPage = document.getElementById("room")
 const socket = io.connect("https://local-party.herokuapp.com")
 
+socket.on('connect', function (socket) {
+    console.log('Connected to the server!');   
+    landingPage.style.display = "block" 
+});
+
 const append = message => {
     document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mt-3" id="message"><span class="username" style="color: ${message.pfp}">${message.name}: </span>${message.content}</div>`
 }
@@ -154,8 +159,6 @@ if(localStorage.getItem("pfpUrl") == null) {
     localStorage.setItem("pfpUrl", color)
 }
 
-landingPage.style.display = "block"
-
 document.addEventListener("click", function (e) {
     if(e.target.id == "createRoomButton") {
         landingPage.style.display = "none"
@@ -283,7 +286,9 @@ document.addEventListener("click", function (e) {
         location.reload()
     }
     if(e.target.id == "backButton") {
-        location.reload()
+        joinPage.style.display = "none"
+        createPage.style.display = "none"
+        landingPage.style.display = "block"
     }
 })
 
