@@ -27,7 +27,7 @@ A website where you can create rooms and chat while watching local video files s
 
 ## Video
 
-[![Local Party Demo](https://img.youtube.com/vi/Ym7hkFfNIYg/hqdefault.jpg)](https://youtu.be/Ym7hkFfNIYg)
+[![Local Party Demo](https://img.youtube.com/vi/Tw1BuJPapg4/hqdefault.jpg)](https://youtu.be/Tw1BuJPapg4)
 
 ## Media
 An album of screenshots of the website can be found [here](https://imgur.com/a/wzKc2g7).
