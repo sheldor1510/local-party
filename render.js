@@ -72,6 +72,7 @@ socket.on('left', data => {
     }
 })
 
+
 socket.on('playerControlUpdate', data => {
     if(data.roomCode == localStorage.getItem("roomCode")) {
         if(data.message == "play") {
