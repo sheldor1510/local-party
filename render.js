@@ -147,7 +147,7 @@ if(localStorage.getItem("username") == null) {
     localStorage.setItem("username", "unknown")
 }
 
-const colors = ['#F26E5C', '#FCE060', '#63E683', '#6085FC', '#F52C93']
+const colors = ['#F26E5C', '#FCE060', '#63E683', '#6085FC', '#F52C93','#00FFFF','#800080','#006400','#FF8C00','#4B0082']
 
 function random_item(items) {
     return items[Math.floor(Math.random() * items.length)];
