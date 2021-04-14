@@ -213,6 +213,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "#f3dfbf"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: roomCode, pfp: localStorage.getItem("pfpUrl") })
                         createPage.style.display = "none"
+                        document.title = `Local Party | ${roomName}`
                         roomPage.style.display = "block"
                     }
                 })
@@ -272,6 +273,7 @@ document.addEventListener("click", function (e) {
                         append({name: "Local Party", content: "Source code for the project is available at https://github.com/sheldor1510/local-party", pfp: "#f3dfbf"})
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") })
                         joinPage.style.display = "none"
+                        document.title = `Local Party | ${resp.roomName}`
                         roomPage.style.display = "block"
                     }   
                 })
