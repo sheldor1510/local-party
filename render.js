@@ -271,6 +271,13 @@ document.addEventListener("click", function (e) {
     }
 })
 
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
+    socket.emit('disconnectUser')
+    location.reload()
+});
+
 const form = document.getElementById("send-form")
 
 form.addEventListener('submit', (e) => {
