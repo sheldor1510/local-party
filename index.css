@@ -189,35 +189,49 @@ input:focus{
 .messages{
   height: 80vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 @media(max-width: 2000px){
-  .messages{
-      height: 79vh;
-  } 
+.messages{
+  height: 79vh;
+} 
 }
 
 @media(max-width: 1600px){
 .messages{
-    height: 75vh;
+  height: 75vh;
 } 
 }
 
 @media(max-width: 1500px){
 .messages{
-    height: 74vh;
+  height: 74vh;
+  font-size: 0.9rem;
+} 
+}
+
+@media(max-width: 1400px){
+.messages{
+  font-size: 0.8rem;
+} 
+}
+
+@media(max-width: 1300px){
+.messages{
+  font-size: 0.7rem;
 } 
 }
 
 @media(max-width: 900px){
 .messages{
-    height: 73vh;
+  height: 65vh;
 } 
 }
 
 @media(max-width: 700px){
 .messages{
-    height: 72vh;
+  height: 63vh;
 } 
 }
 
