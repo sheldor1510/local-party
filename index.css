@@ -191,6 +191,36 @@ input:focus{
   overflow-y: scroll;
 }
 
+@media(max-width: 2000px){
+  .messages{
+      height: 79vh;
+  } 
+}
+
+@media(max-width: 1600px){
+.messages{
+    height: 75vh;
+} 
+}
+
+@media(max-width: 1500px){
+.messages{
+    height: 74vh;
+} 
+}
+
+@media(max-width: 900px){
+.messages{
+    height: 73vh;
+} 
+}
+
+@media(max-width: 700px){
+.messages{
+    height: 72vh;
+} 
+}
+
 .chattimg{
   position: absolute;
   bottom: 20px;
