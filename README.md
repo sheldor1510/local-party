@@ -13,7 +13,7 @@ A website where you can create rooms and chat while watching local video files s
 
 ## Getting Started
 
-1) Go to [https://localparty.tk/](https://localparty.tk/)
+1) Go to [https://localparty.netlify.app/](https://localparty.netlify.app)
 
 2) To create a room, click on the create room button and enter the name you want to chat with, the room's name and select the video file. 
 
