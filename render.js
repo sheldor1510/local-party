@@ -95,9 +95,9 @@ socket.on('receive', data => {
 
 socket.on('left', data => {
     append({
-        name: data.name,
+        name: 'Local Party',
         content: `${data.name} left the party.`,
-        pfp: data.pfp,
+        pfp: '#f3dfbf',
     })
     document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
     var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
@@ -109,9 +109,9 @@ socket.on('left', data => {
 
 socket.on('leftdefault', data => {
     append({
-        name: data.name,
+        name: 'Local Party',
         content: `${data.name} left the party.`,
-        pfp: data.pfp,
+        pfp: '#f3dfbf',
     })
     document.getElementById("pplinparty").setAttribute("title", `People in party: ${data.members}`)
     var toolTipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
