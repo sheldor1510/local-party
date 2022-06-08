@@ -143,6 +143,10 @@ input:focus{
   width: 78%;
 }
 
+#roomCodeText:hover{
+  cursor: pointer;
+}
+
 .right-side{
   height: 100vh;
   width: 22%;
