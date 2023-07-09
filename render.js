@@ -141,7 +141,7 @@ socket.on('playerControlUpdate', data => {
         videoPlayer.currentTime = data.context
         allowEmit = false;
         videoPlayer.pause()
-        let content = time("played",data.username,data.context)
+        let content = time("paused", data.username, data.context)
         append({
             name: "Local Party", 
             content: content,
