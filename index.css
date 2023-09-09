@@ -263,4 +263,9 @@ input:focus{
 #message{
   height: fit-content;
 }
+
+.artplayer-app {
+  height: 100%;
+  }
+  
 /* Room Page End */

@@ -41,7 +41,28 @@ document.getElementById('roomCodeText').addEventListener('click', ()=>{
     })
 })
 
-var videoPlayer = document.getElementById("video-player")
+var artPlayer = new window.Artplayer({
+    container: '.artplayer-app',
+    url: 'test.mp4',
+    setting: true,
+    autoSize: true,
+    fullscreen: true,
+    miniProgressBar: true,
+    backdrop: true,
+    subtitle: {
+        enable: true,
+        type: 'srt',
+        position: 'bottom',
+        encoding: 'utf-8',
+        escape: false,
+    },
+    settings: [
+        {
+            html: '<input type="file" id="subtitle-file-id" accept=".srt, .vtt, .ass" onchange="window.setSubtitles()" hidden="hidden"/><label for="subtitle-file-id">Choose subtitle</label>',
+        }
+    ]
+})
+
 let lastcurrentime = 0;
 
 const landingPage = document.getElementById("landing")
@@ -125,9 +146,9 @@ socket.on('leftdefault', data => {
 socket.on('playerControlUpdate', data => {
     if(data.message == "play") {
         console.log(data)
-        videoPlayer.currentTime = data.context
+        artPlayer.seek = data.context
         allowEmit = false;
-        videoPlayer.play()
+        artPlayer.play()
         let content = time("played", data.username, data.context)
         append({
             name: "Local Party", 
@@ -138,9 +159,9 @@ socket.on('playerControlUpdate', data => {
     }
     if(data.message == "pause") {
         console.log(data)
-        videoPlayer.currentTime = data.context
+        artPlayer.seek = data.context
         allowEmit = false;
-        videoPlayer.pause()
+        artPlayer.pause()
         let content = time("paused", data.username, data.context)
         append({
             name: "Local Party", 
@@ -187,7 +208,7 @@ document.addEventListener("click", function (e) {
                 document.getElementById("createRoomText").innerHTML = ""
                 document.getElementById("roomNameText").innerHTML = roomName
                 document.getElementById("roomCodeText").innerHTML = roomCode
-                videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
+                artPlayer.switchUrl(localStorage.getItem("videoPath"));
                 var myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
 
@@ -266,7 +287,7 @@ document.addEventListener("click", function (e) {
                         });
                         localStorage.setItem("roomCode", inputRoomCode)
                         localStorage.setItem("username", document.getElementById("join-username").value)
-                        videoPlayer.setAttribute("src", localStorage.getItem("videoPath"))
+                        artPlayer.switchUrl(localStorage.getItem("videoPath"))
                         appendData(resp.roomName, resp.roomCode)
                         socket.emit('new-user-joined', { name: localStorage.getItem("username"), roomCode: resp.roomCode, pfp: localStorage.getItem("pfpUrl") })
                         joinPage.style.display = "none"
@@ -280,7 +301,7 @@ document.addEventListener("click", function (e) {
     }
 
     if(e.target.id == "roomLeaveButton") {
-        videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
+        artPlayer.switchUrl("C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
         socket.emit('disconnectUser', { roomCode: localStorage.getItem("roomCode"), name: localStorage.getItem("username") , pfp: localStorage.getItem("pfpUrl") })
         location.reload()
     }
@@ -310,15 +331,15 @@ form.addEventListener('submit', (e) => {
 
 let allowEmit = true;
 
-videoPlayer.addEventListener('play', videoControlsHandler, false);
-videoPlayer.addEventListener('pause', videoControlsHandler, false);
-videoPlayer.addEventListener('d', videoControlsHandler, false);
+artPlayer.video.addEventListener('play', videoControlsHandler, false);
+artPlayer.video.addEventListener('pause', videoControlsHandler, false);
+artPlayer.video.addEventListener('d', videoControlsHandler, false);
 
 function videoControlsHandler(e) {
     if (e.type == 'play') {
         if(allowEmit == true){
-            socket.emit("playerControl", {message: "play", context: videoPlayer.currentTime, roomCode: localStorage.getItem("roomCode")}) 
-            let content = time("played","You", videoPlayer.currentTime)
+            socket.emit("playerControl", {message: "play", context: artPlayer.currentTime, roomCode: localStorage.getItem("roomCode")}) 
+            let content = time("played","You", artPlayer.currentTime)
             append({
                 name: "Local Party", 
                 content: content,
@@ -331,8 +352,8 @@ function videoControlsHandler(e) {
         }, 500);
     } else if (e.type == 'pause') {
         if(allowEmit == true){
-            socket.emit("playerControl", {message: "pause", context: videoPlayer.currentTime, roomCode: localStorage.getItem("roomCode")})
-            let content = time("paused","You", videoPlayer.currentTime)
+            socket.emit("playerControl", {message: "pause", context: artPlayer.currentTime, roomCode: localStorage.getItem("roomCode")})
+            let content = time("paused","You", artPlayer.currentTime)
             append({
                 name: "Local Party", 
                 content: content,
@@ -360,4 +381,11 @@ function onChangeJoinFile() {
     const size = file.size
     localStorage.setItem("videoSize", size)
     localStorage.setItem("videoPath", path)
+}
+
+window.setSubtitles = () => {
+    const file = document.getElementById("subtitle-file-id").files[0]
+    const url = URL.createObjectURL(file);
+    artPlayer.subtitle.url = url;
+    artPlayer.subtitle.type = file.name.split('.').pop();
 }
