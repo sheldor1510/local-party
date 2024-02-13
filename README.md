@@ -2,9 +2,9 @@
 
 <h1 align='center'> Local Party </h1>
 
-[![GitHub stars](https://img.shields.io/github.com/sheldor1510/local-party.svg)](https://github.com/sheldor1510/local-party/stargazers)
-[![GitHub forks](https://img.shields.io/github.com/sheldor1510/local-party.svg)](https://github.com/sheldor1510/local-party/network)
-[![GitHub license](https://img.shields.io/github.com/sheldor1510/local-party.svg)](https://github.com/sheldor1510/local-party/blob/master/LICENSE)
+![GitHub stars](https://img.shields.io/github/stars/sheldor1510/local-party.svg)
+![GitHub forks](https://img.shields.io/github/forks/sheldor1510/local-party.svg)
+![GitHub license](https://img.shields.io/github/license/sheldor1510/local-party.svg)
 
 
 # Table of Contents
