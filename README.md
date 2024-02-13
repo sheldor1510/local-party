@@ -42,7 +42,7 @@ A website where you can create rooms and chat while watching local video files s
 
 5) You can view how many people are in the party by hovering over the user icon in the top right of the room page.
 
-6) You can leave the party by clicking on the leave icon in the top left of the room page.
+6) You can leave the party by clicking on the leave icon in the top left of the chat section of the room page.
 
 ## Video
 
