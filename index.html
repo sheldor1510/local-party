@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="icon.png">
     <!-- Notyf -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
     <script defer src="render.js"></script>
     <link rel="stylesheet" href="index.css">
   </head>
@@ -161,15 +162,7 @@
         <div class="row">
             <div class="col-9 left-side">
                 <div class="video video-player-conatiner">
-                    <video
-                      id="video-player"
-                      class="video-js vjs-big-play-centered"
-                      controls
-                      preload="metadata"
-                      data-setup='{}'
-                    >
-                      <source id="videoSrc" src="test.mp4" type="video/mp4" />
-                    </video>
+                    <div class="artplayer-app"></div>
                   </div>
                   <!-- <img src="loading.gif" alt="loader" id="loader"/> -->
             </div>
